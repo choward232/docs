@@ -1,0 +1,1069 @@
+openapi: "3.0.0"
+info:
+    version: "1.0.0"
+    title: "Ekho Dealer External API Schema"
+    description: Objects and endpoints that are made accessible to external clients
+servers:
+    - url: https://us-central1-ad-backend-prod.cloudfunctions.net
+      description: Production server
+    - url: https://us-central1-airdealer-67669.cloudfunctions.net
+      description: Dev server
+paths:
+    /checkoutCart_oncreate_v2/:
+        post:
+            summary: This endpoint is used to determine whether or not we can facilitate a sale for a user (based on selected registration/titling state and cart items), and if so, to create a checkout cart for them. If we can't facilitate a sale, we will redirect the user to the OEMs native checkout page. If we can facilitate a sale, we will redirect the user to the OEM's Ekho Dealer Checkout page.
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            $ref: "#/components/schemas/IncomingCheckoutCart"
+            responses:
+                "200":
+                    description: Successfully processed the checkout cart. Returns the checkoutUrl to redirect the user to to complete the checkout process. Can either be the OEMs native checkout page or our own checkout page, depending on whether or not Ekho is "turned on" in state the user wants to title their vehicle in AND whether or not there is at least 1 vehicle among the items
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    checkoutUrl:
+                                        type: string
+                                        description: The url to redirect the user to to complete the checkout process. If we're checking the buyer out via Ekho Dealer's checkout out, this url will whatever we were sent as the `nativeDefaultCheckoutUrl` in the request body.
+                                    ekhoCheckoutCartId:
+                                        type: string
+                                        description: The id of the checkout cart we created. This will be null if we aren't redirecting the buyer to Ekho Dealer's checkout page.
+                                    message:
+                                        type: string
+                                        description: A human readable message describing why we're redirecting the buyer to the checkoutUrl we return
+                "400":
+                    description: Bad request, typically due to missing or incorrect parameters
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    error:
+                                        type: string
+                                        description: A human readable message describing why the request was bad
+                "500":
+                    description: Unexpected error
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    error:
+                                        type: string
+                                        description: A human readable message describing why the request was bad
+    /purchasedVehicle_oncreate_v2/{purchasedVehicleId}/vin:
+        post:
+            summary: Endpoint to assign a VIN to a purchased vehicle and update necessary details in the database after verifying OEM key and admin authentication.
+            parameters:
+                in: path
+                name: purchasedVehicleId
+                required: true
+                schema:
+                    type: string
+                description: The ID of the purchased vehicle to which the VIN will be assigned.
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                oemKey:
+                                    type: string
+                                    description: Key to identify and authenticate the OEM admin.
+                                vin:
+                                    type: string
+                                    description: The Vehicle Identification Number to be assigned to the purchased vehicle.
+            responses:
+                "200":
+                    description: VIN successfully assigned to the purchased vehicle.
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    vin:
+                                        type: string
+                                        description: The VIN that was assigned to the purchased vehicle.
+                "400":
+                    description: Bad request due to missing parameters or invalid VIN length.
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    error:
+                                        type: string
+                                        description: Details the reason for the request failure, such as missing parameters or validation errors on the VIN.
+                "401":
+                    description: Unauthorized request due to failed authentication.
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    error:
+                                        type: string
+                                        description: Explanation of why authentication failed.
+                "500":
+                    description: Server error when trying to assign the VIN.
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    error:
+                                        type: string
+                                        description: Detailed message of the server error encountered during the process.
+            security:
+                - oemAdminAuth: []
+    /oem_onauth_v2/token:
+        post:
+            summary: Endpoint to authenticate an OEM admin account and return a valid bearer token.
+            requestBody:
+            required: true
+            content:
+                application/json:
+                schema:
+                    type: object
+                    properties:
+                    oemKey:
+                        type: string
+                        description: Key to identify and authenticate the OEM admin.
+                    username:
+                        type: string
+                        description: Username of the admin account.
+                    password:
+                        type: string
+                        description: Password of the admin account.
+            responses:
+                "200":
+                    description: Successfully authenticated and fetched access token.
+                    content:
+                    application/json:
+                        schema:
+                        type: object
+                        properties:
+                            accessToken:
+                                type: string
+                                description: The access token for authenticated requests.
+                            expiryTime:
+                                type: integer
+                                description: The expiration time of the token formatted as a Unix timestamp (milliseconds since Unix epoch).
+                "400":
+                    description: Bad request due to missing parameters or invalid user credentials.
+                    content:
+                    application/json:
+                        schema:
+                        type: object
+                        properties:
+                            error:
+                            type: string
+                            description: Details the reason for the request failure, such as missing parameters or invalid credentials.
+                "401":
+                    description: Unauthorized request due to failed authentication.
+                    content:
+                    application/json:
+                        schema:
+                        type: object
+                        properties:
+                            error:
+                            type: string
+                            description: Explanation of why authentication failed.
+                "403":
+                    description: Forbidden request due to invalid account type or access denied.
+                    content:
+                    application/json:
+                        schema:
+                        type: object
+                        properties:
+                            error:
+                            type: string
+                            description: Explanation of why access was denied.
+                "500":
+                    description: Server error when trying to authenticate the admin account.
+                    content:
+                    application/json:
+                        schema:
+                        type: object
+                        properties:
+                            error:
+                            type: string
+                            description: Detailed message of the server error encountered during the process.
+    /oem_oncreate_v2/pickUpLocation:
+        post:
+            summary: Add a new pickup location
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        type: object
+                        required:
+                            - oemKey
+                            - pickUpLocation
+                        properties:
+                            oemKey:
+                                type: string
+                            pickUpLocation:
+                                $ref: "#/components/schemas/PickUpLocation"
+            responses:
+                "200":
+                    description: Successfully added the pickup location.
+                "400":
+                    description: Bad Request. Possible reasons include missing parameters or invalid data.
+                    content:
+                        application/json:
+                        schema:
+                            type: object
+                            properties:
+                            error:
+                                type: string
+                                example: "No oemId found for the given oemKey: {oemKey}"
+                "401":
+                    description: Unauthorized. Authentication failed.
+                    content:
+                        application/json:
+                        schema:
+                            type: object
+                            properties:
+                            error:
+                                type: string
+                                example: "Authentication failed"
+            security:
+                - oemAdminAuth: []
+            x-code-samples:
+                - lang: cURL
+                  source: |
+                      curl -X POST "https://us-central1-airdealer-67669.cloudfunctions.net/oem_oncreate_v2/pickUpLocation" \
+                      -H "Content-Type: application/json" \
+                      -H "Authorization: Bearer YOUR_TOKEN" \
+                      -d '{
+                          "oemKey": "exampleOemKey",
+                          "pickUpLocation": {
+                              "id": "exampleLocationId",
+                              "otherProperty": "value"
+                          }
+                      }'
+components:
+    schemas:
+        IncomingCheckoutCart:
+            type: object
+            description: The schema of the payload our checkoutCart_oncreate/ endpoint receives and enriches to create a CheckoutCart object
+            required:
+                - cancelUrl
+                - oemKey
+                - nativeDefaultCheckoutUrl
+                - items
+                # Optional fields:
+                # - id
+                # - boltOnsAlreadyAssigned (tells us if we need to assign bolt-ons to the vehicles in the cart or not)
+                # - registrationState
+                # - ecommUserId
+                # - source
+                # - ekhoCheckoutCartId
+                # - orderCreationType (optional for backwards compatibility => default to ORGANIC if not set)
+                # - linkUseType (optional for backwards compatibility => default to "MULTI_USE" if not set)
+                # - customLinkConfig
+            properties:
+                id:
+                    type: string
+                    description: The id of the checkout cart. If an ID is included, then we will use this ID for the newly created checkout cart (and overwrite any existing cart with the same ID)
+                cancelUrl:
+                    type: string
+                    description: The url to redirect to if the user cancels the checkout process
+                oemKey:
+                    type: string
+                    description: The oemKey of the OEM that this checkout cart belongs to
+                nativeDefaultCheckoutUrl:
+                    type: string
+                    description: The OEMs native checkout page URL, which we will route the buyer to if a) the buyer doesn't have vehicles in their cart, or b) we don't support the state they want to register their vehicle in (if included)
+                    example: https://www.rideoem.com/checkout
+                registrationState:
+                    type: string
+                    description: The state (abbreviation) the buyer wants to register their vehicle in. Helps us determine whether or not we can facilitate this sale
+                    enum:
+                        - AL # Alabama
+                        - AK # Alaska
+                        - AZ # Arizona
+                        - AR # Arkansas
+                        - CA # California
+                        - CO # Colorado
+                        - CT # Connecticut
+                        - DE # Delaware
+                        - FL # Florida
+                        - GA # Georgia
+                        - HI # Hawaii
+                        - ID # Idaho
+                        - IL # Illinois
+                        - IN # Indiana
+                        - IA # Iowa
+                        - KS # Kansas
+                        - KY # Kentucky
+                        - LA # Louisiana
+                        - ME # Maine
+                        - MD # Maryland
+                        - MA # Massachusetts
+                        - MI # Michigan
+                        - MN # Minnesota
+                        - MS # Mississippi
+                        - MO # Missouri
+                        - MT # Montana
+                        - NE # Nebraska
+                        - NV # Nevada
+                        - NH # New Hampshire
+                        - NJ # New Jersey
+                        - NM # New Mexico
+                        - NY # New York
+                        - NC # North Carolina
+                        - ND # North Dakota
+                        - OH # Ohio
+                        - OK # Oklahoma
+                        - OR # Oregon
+                        - PA # Pennsylvania
+                        - RI # Rhode Island
+                        - SC # South Carolina
+                        - SD # South Dakota
+                        - TN # Tennessee
+                        - TX # Texas
+                        - UT # Utah
+                        - VT # Vermont
+                        - VA # Virginia
+                        - WA # Washington
+                        - WV # West Virginia
+                        - WI # Wisconsin
+                        - WY # Wyoming
+                items:
+                    type: array
+                    description: An array of items that represent the vehicles and accessories in the cart
+                    items:
+                        type: object
+                        required:
+                            - productId
+                            - count
+                            - basePrice
+                            - specs
+                            - name
+                            - imgUrl
+                            # Note that the below are optional, since we can grab them all from the OEM or vehicle subcollection objects. Things that seem necessary that aren't required or optional, we can probably grab from the OEM or vehicle subcollection objects
+                            # - id (if create via OEM portal, we will provide this)
+                            # - boltOnAccessories (if create via OEM portal, we will provide this)
+                            # - boltOnVehicleIds (if create via OEM portal, we will provide this)
+                            # - typeOfOrder
+                            # - variantId
+                            # - year (only optional if it's a vehicle)
+                            # - description
+                            # - color
+                            # - sku
+                            # - stage
+                            # - metadata
+                            # - orderFee (only for vehicles)
+                            # - shippingFee (only for vehicles - optional)
+                            # - pickUpFee (only for vehicles - optional)
+                            # optional -- only added when present in existing order data
+                            # - vin
+                            # - odometerReading
+                            # - estimatedDeliveryDate
+                            # - totalPrice
+                            # - estimatedProductionTime
+                            # - estimatedDeliveryTime
+                        properties:
+                            productId:
+                                type: string
+                                description: The product id of the item
+                            count:
+                                type: number
+                                description: The quantity of the item (only relevant if the item is an accessory)
+                            name:
+                                type: string
+                                description: The name of the item
+                            basePrice:
+                                type: number
+                                description: The base price of the item (i.e. total price, excluding specs and taxes and fees)
+                            imgUrl:
+                                type: string
+                                description: The url of the image of the item. If we have our own (i.e. for a vehicle), we will provide our own.
+                            specs:
+                                type: array
+                                items:
+                                    type: object
+                                    description: An array of objects that hold information about each spec of the item
+                                    required:
+                                        - name
+                                        - price
+                                        - option
+                                        # optional
+                                        # - description
+                                        # - id
+                                    properties:
+                                        name:
+                                            type: string
+                                            description: The name of the spec
+                                        price:
+                                            type: number
+                                            description: The price of the spec
+                                        option:
+                                            type: string
+                                            description: The option of the spec
+                                        description:
+                                            type: string
+                                            description: The description of the spec. Allows for a longer string and shows up in a tooltip on the frontend
+                                        id:
+                                            type: string
+                                            description: The id of the spec. Never used by Ekho, but could be useful for OEMs
+                            # Optional fields below
+                            estimatedProductionTime:
+                                type: number
+                                description: The estimated production time (in days) of the vehicle, inclusive of production, shipping to US location, customs, PDI, etc. If specified, this will override the average production time of the vehicle from the Vehicle object
+                            estimatedDeliveryTime:
+                                type: number
+                                description: The estimated delivery time (in days) of the vehicle from US location to end destination. If specified, this will override the average delivery time of the vehicle from the Vehicle object
+                            year:
+                                type: number
+                                description: The year of the vehicle model. Only relevant for vehicle items. Will override the year that's in the vehicle subcollection object
+                            id:
+                                type: string
+                                description: The id of the item. Will be used at order creation time as the document ID of the purchasedItem. Will only be set if the cart was created via the OEM portal
+                            color:
+                                type: string
+                                description: The color of the vehicle
+                            totalPrice:
+                                type: number
+                                description: The total price of the item (i.e. base price + specs). Only sometimes included when created from OEM admin portal
+                            boltOnAccessories:
+                                type: array
+                                description: An array with the document IDs of boltOn purchasedAccessories that have been assigned to this vehicle. Will only be set if the cart was created via the OEM portal
+                                items:
+                                    type: string
+                            boltOnVehicleIds:
+                                type: array
+                                description: An array with the document IDs of purchasedVehicles that this bolt-on has been assigned to. Will only be set if the cart was created via the OEM portal
+                                items:
+                                    type: string
+                            typeOfOrder:
+                                type: string
+                                description: The type of order of the vehicle
+                                enum:
+                                    - preorder
+                                    - buildToOrder
+                                    - inventoryOrder
+                            variantId:
+                                type: string
+                                description: The variant id of the vehicle
+                            description:
+                                type: string
+                                description: The description of the vehicle
+                            sku:
+                                type: string
+                                description: Optional. The sku of the vehicle
+                            stage:
+                                type: string
+                                description: Optional. The stage of the vehicle.
+                                enum:
+                                    - signOff
+                                    - pendingPaymentGuarantee
+                                    - pendingVerification
+                                    - production
+                                    - complete
+                            orderFee:
+                                type: number
+                                description: Optional. The order fee of the vehicle - if not included, use orderFee from vehicle subcollection. Only relevant for vehicle items
+                            vin:
+                                type: string
+                                description: The vin of the vehicle that was purchased in this checkout cart
+                            odometerReading:
+                                type: number
+                                description: The odometer reading of the vehicle that was purchased in this checkout cart
+                            estimatedDeliveryDate:
+                                type: number
+                                description: The estimated delivery date of the vehicle that was purchased in this checkout cart
+                            shippingFee:
+                                type: number
+                                description: Optional. The shipping fee of the vehicle - if not included, use shippingFee from vehicle subcollection. Only relevant for vehicle items
+                            pickUpFee:
+                                type: number
+                                description: Optional. The pick up fee of the vehicle - if not included, default to 0. Only relevant for vehicle items
+                            metadata:
+                                type: object
+                                description: Optional. This is only relevant for vehicles currently. This object stores misc data that will be passed along to the checkoutCart object (and subsequent purchased vehicle object). Note that existingPayments will not be passed along and is relevant for creating preorder carts.
+                                properties:
+                                    existingPayments:
+                                        type: array
+                                        description: Optional. Details previous payments made for the vehicle
+                                        items:
+                                            type: object
+                                            required:
+                                                - amount
+                                                - type
+                                                - recipient
+                                            properties:
+                                                amount:
+                                                    type: number
+                                                    description: The amount of the payment
+                                                type:
+                                                    type: string
+                                                    description: The type of payment
+                                                    enum:
+                                                        - PREORDER
+                                                        - EXISTINGORDER
+                                                recipient:
+                                                    type: string
+                                                    description: The recipient of the payment
+                                                    enum:
+                                                        - OEM
+                                                        - EKHO
+                                    additionalProperties: true
+                                example:
+                                    {
+                                        metadataOpt1:
+                                            {
+                                                existingPayments:
+                                                    [
+                                                        {
+                                                            amount: 1000,
+                                                            type: "PREORDER",
+                                                            recipient: "OEM",
+                                                        },
+                                                    ],
+                                                randomField: "randomValue",
+                                            },
+                                    }
+                # Optional fields below
+                boltOnsAlreadyAssigned:
+                    type: boolean
+                    description: Whether or not we need to assign bolt-ons to the vehicles in the cart. If true, all vehicles' boltOnAccessories arrays will be set and all accessories' boltOnVehicleIds arrays will be set. Default value (if not provided) is false
+                ecommUserId:
+                    type: string
+                    description: Optional. The id of the user in the ecomm system. Set to "0" if guest or unknown
+                ekhoCheckoutCartId:
+                    type: string
+                    description: Optional. If you would like for us to overwrite an existing checkoutCart with the same id, provide the id here. If you don't provide this, we will create a new checkoutCart with a new id
+                orderCreationType:
+                    type: string
+                    description: Determines the type of order being created. If not provided, we will default to "ORGANIC". PREORDER -> cart created for preorder, EXISTINGORDER -> cart created for an existing order, OEMORIGINATED -> cart created by OEM sales rep, ORGANIC -> cart created by buyer on OEM website
+                    enum:
+                        - ORGANIC
+                        - PREORDER
+                        - EXISTINGORDER
+                        - OEMORIGINATED
+                        - ABANDONEDCART
+                source:
+                    type: string
+                    description: The source of the checkout cart. Useful for tacking purposes to know where the OEM is placing this link - and thus where buyers are coming from
+                    example: "facebook"
+                linkUseType:
+                    type: string
+                    description: The type of link that we're creating. If not provided, we will default to "MULTI_USE". SINGLE_USE -> link can only be used once, MULTI_USE -> link can be used multiple times
+                    enum:
+                        - SINGLE_USE
+                        - MULTI_USE
+                customLinkConfig:
+                    $ref: "#/components/schemas/CustomLinkConfig"
+        # Not it's own object, but used in incomingCarts and CheckoutCarts objects
+        CustomLinkConfig:
+            type: object
+            description: Custom configuration for this checkout cart
+            required:
+                - linkName
+                # Optional
+                # - salespersonEmail
+                # - prefilledInfo
+                # - checkoutPaymentOverride
+            properties:
+                linkName:
+                    type: string
+                    description: The human readable name of the custom link
+                checkoutPaymentOverride:
+                    type: object
+                    description: The checkout payment options override that applies for this custom link. If this object exists, then checkout will use this (rather than object on OEM object) to determine checkout payment options. Note that if the OEM is not configured to support certain payment types (like reservation payment), then you can not create a custom link that supports that payment type. You can only create a custom link that supports a subset of payments types that the OEM supports
+                    properties:
+                        STANDARD_RESERVATION:
+                            type: object
+                            description: If we're allowing a reservation payment at checkout. If this exists and isn't null, the OEM supports this payment type. The other properties inform how we handle this payment type
+                            required:
+                                - paymentTypeEnum
+                            properties:
+                                paymentTypeEnum:
+                                    type: string
+                                    value: STANDARD_RESERVATION
+                        CHECKOUT_FULL_PAYMENT:
+                            type: object
+                            description: If we're allowing full payment at chekcout. If this exists and isn't null, the OEM supports this payment type. The other properties inform how we handle this payment type
+                            required:
+                                - paymentTypeEnum
+                                - fullPaymentDiscountPerc
+                            properties:
+                                paymentTypeEnum:
+                                    type: string
+                                    value: CHECKOUT_FULL_PAYMENT
+                                fullPaymentDiscountPerc:
+                                    type: number
+                                    description: The percentage discount we give the buyer if they pay in full
+                        LOAN_DOWNPAYMENT:
+                            type: object
+                            description: If we're allowing a loan down payment at checkout. If this exists and isn't null, the OEM supports this payment type. The other properties inform how we handle this payment type
+                            required:
+                                - paymentTypeEnum
+                                - checkoutDownPaymentPerc
+                            properties:
+                                paymentTypeEnum:
+                                    type: string
+                                    value: LOAN_DOWNPAYMENT
+                                checkoutDownPaymentPerc:
+                                    type: number
+                                    description: The percentage of the total order price that we require the buyer to pay at checkout
+                salespersonEmail:
+                    type: string
+                    description: The email of the salesperson that created the custom link. Will be used for updates
+                prefilledInfo:
+                    type: object
+                    description: An object that holds information that we will prefill at checkout. All are optional
+                    properties:
+                        buyerFullName:
+                            type: string
+                        buyerPhone:
+                            type: string
+                        buyerEmail:
+                            type: string
+                        selectedPaymentOption:
+                            type: string
+                            enum:
+                                - STANDARD_RESERVATION
+                                - CHECKOUT_FULL_PAYMENT
+                                - LOAN_DOWNPAYMENT
+                        selectedDeliveryOption:
+                            type: string
+                            enum:
+                                - PICK_UP
+                                - SHIP
+                        selectedRegistrationOption:
+                            type: string
+                            enum:
+                                - EKHO
+                                - BUYER
+                        selectedPickUpLocationId:
+                            type: string
+                            description: the Ekho document ID of the pickUpLocation that the buyer wants to pick up their vehicle from. Optional value
+                        shippingAddress:
+                            type: object
+                            description: The shipping address of the buyer. Only relevant if selectedDeliveryOption is "SHIP"
+                            properties:
+                                addressString:
+                                    type: string
+                                addressLineOne:
+                                    type: string
+                                addressLineTwo:
+                                    type: string
+                                city:
+                                    type: string
+                                county:
+                                    type: string
+                                state:
+                                    type: string
+                                zip:
+                                    type: string
+                        registrationAddress:
+                            type: object
+                            description: The registration address of the buyer. Only relevant if selectedRegistrationOption is "EKHO"
+                            properties:
+                                addressString:
+                                    type: string
+                                addressLineOne:
+                                    type: string
+                                addressLineTwo:
+                                    type: string
+                                city:
+                                    type: string
+                                county:
+                                    type: string
+                                state:
+                                    type: string
+                                zip:
+                                    type: string
+                        mailingAddress:
+                            type: object
+                            description: The mailing address of the buyer. Only relevant if selectedRegistrationOption is "EKHO"
+                            properties:
+                                addressString:
+                                    type: string
+                                addressLineOne:
+                                    type: string
+                                addressLineTwo:
+                                    type: string
+                                city:
+                                    type: string
+                                county:
+                                    type: string
+                                state:
+                                    type: string
+                                zip:
+                                    type: string
+                        regAddressSameAsShipping:
+                            type: boolean
+                            description: Whether or not the registration address is the same as the shipping address. Only relevant if selectedDeliveryOption is "DELIVERY"
+                        mailingAddressSameAsShipping:
+                            type: boolean
+                            description: Whether or not the mailing address is the same as the shipping address. Only relevant if selectedRegisrationOption is "BUYER"
+        PurchasedVehicle:
+            type: object
+            required:
+                - id
+                - productId
+                - buyerId
+                - placedOrderId
+                - orderFee
+                - name
+                - basePrice
+                - basePriceWithSpecs
+                - specs
+                - imgUrl
+                - description
+                - oemId
+                - typeOfOrder
+                - dotVehicle
+                - datePurchased
+                - stage
+                - vehicleFulfillmentStatus
+                - sensitiveDataPurged
+                - totalPrice
+                - preDiscountTotalPrice
+                - estimatedProductionDate
+                - estimatedDeliveryDate
+                - buyerFullName
+                - variantId
+                - orderCreationType
+            properties:
+                id:
+                    type: string
+                productId:
+                    type: string
+                buyerId:
+                    type: string
+                buyerFullName:
+                    type: string
+                    description: The full name of the buyer (copied from the buyer object)
+                lastActive:
+                    type: number
+                    description: The last time the buyer viewed the purchased vehicle's details page. Used for nudging.
+                placedOrderId:
+                    type: string
+                orderFee:
+                    type: number
+                    description: How much a buyer pays at checkout towards a vehicle. In case of full vehicle payment, this is the total price of the vehicle (without any taxes or fees included and minus any previous payments - like preorder fees). In case of financing, this is the standard down payment. In case of standard reservation, this is the reservation fee.
+                name:
+                    type: string
+                basePrice:
+                    type: number
+                    description: the base price of the vehicle
+                basePriceWithSpecs:
+                    type: number
+                    description: the base price of the vehicle including the price of any specs
+                specs:
+                    type: array
+                    items:
+                        type: object
+                        required:
+                            - name
+                            - price
+                            - option
+                            # optional
+                            # - description
+                            # - id
+                        properties:
+                            name:
+                                type: string
+                            price:
+                                type: number
+                            option:
+                                type: string
+                            description:
+                                type: string
+                                description: The description of the spec. Allows for a longer string and shows up in a tooltip on the frontend
+                            id:
+                                type: string
+                                description: The id of the spec. Never used by Ekho, but could be useful for OEMs
+                imgUrl:
+                    type: string
+                description:
+                    type: string
+                oemId:
+                    type: string
+                typeOfOrder:
+                    type: string
+                    enum:
+                        - preorder
+                        - buildToOrder
+                        - inventoryOrder
+                dotVehicle:
+                    type: boolean
+                datePurchased:
+                    type: number
+                    example: 1699246800000
+                    description: The date the reservation fee was paid for this vehicle
+                stage:
+                    type: string
+                    description: Optional. The stage of the vehicle.
+                    enum:
+                        - signOff
+                        - pendingPaymentGuarantee
+                        - pendingVerification
+                        - production
+                        - complete
+                vehicleFulfillmentStatus:
+                    type: string
+                    enum:
+                        - UNFULFILLED # initial state
+                        - ON_HOLD # if a buyer has not responded to outreach and has not made necessary progress
+                        - FULFILLMENT_REQUESTED # buyer has completed all necessary steps in order to receive vehicle
+                        - FULFILLED # vehicle has been fulfilled
+                        - CANCELED
+                        - SHIPPED
+                        - READY_FOR_PICK_UP
+                fulfillmentDetails:
+                    type: object
+                    description: The following optional properties are provided by the OEM at time of setting vehicleFulfillmentStatus to SHIPPED.
+                    required:
+                        # OPTIONAL BELOW
+                        # - vehicleTrackingReference
+                        # - contactNumber
+                        # - companyName
+                        # - msoTrackingReference
+                        # - msoSent
+                    properties:
+                        vehicleTrackingReference:
+                            description: Tracking number or link.
+                            type: string
+                        contactNumber:
+                            description: A number the buyer can call.
+                            type: string
+                        companyName:
+                            description: Name of the fulfillment company - presumably a delivery vendor.
+                            type: string
+                        msoTrackingReference:
+                            description: Tracking number or link.
+                            type: string
+                        msoSent:
+                            description: Init as false. Indicates whether the OEM has sent us the MSO.
+                            type: string
+                sensitiveDataPurged:
+                    type: boolean
+                    description: Indicates whether sensitive data has been purged from this vehicle.
+                totalPrice:
+                    type: number
+                    description: The price of the vehicle plus the price of each bolt on accessory minus any discounts. Does not include taxes or fees.
+                preDiscountTotalPrice:
+                    type: number
+                    description: The price of the vehicle plus the price of each bolt on accessory before any discounts are subtracted. Does not include taxes or fees.
+                estimatedProductionDate:
+                    type: number
+                    description: The estimated date of when this vehicle will be finished being produced.
+                estimatedDeliveryDate:
+                    type: number
+                    description: The estimated date of when this vehicle will be delivered.
+                variantId:
+                    type: string
+                boltOnAccessories:
+                    type: array
+                    description: An array with the document IDs of boltOn purchasedAccessories that have been assigned to this vehicle
+                    items:
+                        type: string
+                year:
+                    type: number
+                    description: The year of the vehicle model
+                orderCreationType:
+                    type: string
+                    description: Determines the type of order this vehicle belongs to. Defaults to "ORGANIC". PREORDER -> order created from preorder, EXISTINGORDER -> order created for an existing order, OEMORIGINATED -> cart link generated by OEM sales rep, ORGANIC -> cart created organically by buyer on OEM website
+                    enum:
+                        - ORGANIC
+                        - PREORDER
+                        - EXISTINGORDER
+                        - OEMORIGINATED
+                        - ABANDONEDCART
+                deliveryInfo:
+                    type: object
+                    properties:
+                        zip:
+                            type: string
+                        addressLineTwo:
+                            type: string
+                        city:
+                            type: string
+                        addressLineOne:
+                            type: string
+                        county:
+                            type: string
+                        state:
+                            type: string
+                        deliveryInstructions:
+                            type: string
+                pickUpInfo:
+                    type: object
+                    description: At time of check out, if this field is set, it means the buyer has opted for pick up.
+                    required:
+                        - addressLineOne
+                        - addressLineTwo
+                        - county
+                        - city
+                        - state
+                        - zip
+                        - pickUpLocationName
+                        - pickUpLocationId
+                registrationDetails:
+                    type: object
+                    properties:
+                        registrationState:
+                            type: string
+                        tarAgent:
+                            type: string
+                            enum:
+                                - EKHO
+                                - BUYER
+                        birthYear:
+                            type: number
+                additionalDues:
+                    type: object
+                    properties:
+                        total:
+                            type: number
+                            description: sum of the below
+                        deliveryEstimate:
+                            type: number
+                        pickUpEstimate:
+                            type: number
+                        feeTotal:
+                            type: number
+                        taxTotal:
+                            type: number
+                        fidelity:
+                            type: string
+                            description: The fidelity of the estimates for taxes and fees.
+                            enum:
+                                - initial
+                                - apiEstimate
+                                - final
+                sigWorkflow:
+                    type: string
+                    enum:
+                        - ESIGN
+                        - PHYSICAL
+                lastUpdated:
+                    type: number
+                    description: date for when the vehicle has been last updated
+                vehicleInvoiceURL:
+                    type: string
+                vin:
+                    type: string
+                    description: this must be input by the OEM at some point prior to delivery
+                odometerReading:
+                    type: number
+                    description: this must be input by the OEM at some point prior to delivery, or can be autoset
+                odometerValidity:
+                    type: string
+                    enum:
+                        - Actual
+                        - ExceedsMechanicalLimits
+                        - NotActual
+                    description: Indicates the odometer validity/condition. Can be autoset
+                motorcycleEngineNumber:
+                    type: string
+                    description: this must be input by the OEM at some point prior to delivery if the OEM is selling motorcycles
+                lastNudged:
+                    type: number
+                    description: the last date when the OEM has nudged the buyer (this is also updated when we send emails for VIN and odometer assigned)
+        Buyer:
+            type: object
+            required:
+                - id
+                - fullName
+                - address
+                - email
+                - phone
+                - oemId
+                - createdAt
+            properties:
+                id:
+                    type: string
+                fullName:
+                    type: string
+                address:
+                    type: object
+                    required:
+                        - addressLineOne
+                        - addressLineTwo
+                        - city
+                        - county
+                        - state
+                        - zip
+                    properties:
+                        addressLineOne:
+                            type: string
+                        addressLineTwo:
+                            type: string
+                        city:
+                            type: string
+                        county:
+                            type: string
+                        state:
+                            type: string
+                        zip:
+                            type: string
+                        country:
+                            type: string
+                email:
+                    type: string
+                phone:
+                    type: string
+                oemId:
+                    type: string
+                createdAt:
+                    type: number
+        PickUpLocation:
+            type: object
+            required:
+                - id
+                - name
+                - addressLineOne
+                - addressLineTwo
+                - city
+                - state
+                - zip
+                - lat
+                - lng
+                # optional below
+                # - numberForSupport
+                # - emailForSupport
+            properties:
+                id:
+                    type: string
+                name:
+                    type: string
+                addressLineOne:
+                    type: string
+                addressLineTwo:
+                    type: string
+                city:
+                    type: string
+                state:
+                    type: string
+                zip:
+                    type: string
+                lat:
+                    type: number
+                    description: The latitude of the location
+                lng:
+                    type: number
+                    description: The longitude of the location
+                numberForSupport:
+                    type: string
+                    description: The phone number for support at this location
+                emailForSupport:
+                    type: string
+                    description: The email for support at this location
+    securitySchemes:
+        oemAdminAuth:
+            type: http
+            scheme: bearer
+            bearerFormat: JWT

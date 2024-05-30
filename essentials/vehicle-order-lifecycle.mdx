@@ -1,0 +1,35 @@
+---
+title: 'Vehicle Order Lifecycle'
+description: 'This document outlines the lifecycle of a vehicle order, helping you understand when your team can and should take particular action regarding vehicle production, assignent, and fulfillment.'
+icon: 'arrow-progress'
+---
+
+## OEM Vehicle Order Status
+
+The OEM Vehicle Order Status is the property Ekho uses to express where a vehicle order is in it's lifecycle.
+
+<Warning>
+
+ **This is a critical property** that you can reference in the admin portal and via our API.
+
+</Warning>
+![markdown syntax](/images/adminPortal/oemFacingStatus.png)
+
+
+
+
+
+Below we describe the different stages of a vehicle order, 
+
+### Stage 
+The stage of a vehicle order 
+- **Order Status**: The current status of the vehicle order. This can be one of the following values:
+  - `Draft`: The vehicle order has been created but not yet submitted.
+  - `Submitted`: The vehicle order has been submitted but not yet approved.
+  - `Approved`: The vehicle order has been approved and is ready for processing.
+  - `In Production`: The vehicle order is currently in production.
+  - `Shipped`: The vehicle order has been shipped to the dealer.
+  - `Delivered`: The vehicle order has been delivered to the dealer.
+  - `Cancelled`: The vehicle order has been cancelled.
+
+
