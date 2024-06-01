@@ -11,7 +11,8 @@ servers:
 paths:
     /checkoutCart_oncreate_v2/:
         post:
-            summary: This endpoint is used to determine whether or not we can facilitate a sale for a user (based on selected registration/titling state and cart items), and if so, to create a checkout cart for them. If we can't facilitate a sale, we will redirect the user to the OEMs native checkout page. If we can facilitate a sale, we will redirect the user to the OEM's Ekho Dealer Checkout page.
+            summary: Determine if a sale can be facilitated and create a checkout cart.
+            description: This endpoint is used to determine whether or not we can facilitate a sale for a user (based on selected registration/titling state and cart items), and if so, to create a checkout cart for them. If we can't facilitate a sale, we will redirect the user to the OEMs native checkout page. If we can facilitate a sale, we will redirect the user to the OEM's Ekho Dealer Checkout page.
             requestBody:
                 required: true
                 content:
@@ -57,14 +58,15 @@ paths:
                                         description: A human readable message describing why the request was bad
     /purchasedVehicle_oncreate_v2/{purchasedVehicleId}/vin:
         post:
-            summary: Endpoint to assign a VIN to a purchased vehicle and update necessary details in the database after verifying OEM key and admin authentication.
+            summary: Assign a VIN to a purchased vehicle
+            description: Assign VIN and update necessary details in the database after verifying OEM key and admin authentication.
             parameters:
-                in: path
-                name: purchasedVehicleId
-                required: true
-                schema:
-                    type: string
-                description: The ID of the purchased vehicle to which the VIN will be assigned.
+                - in: path
+                  name: purchasedVehicleId
+                  required: true
+                  schema:
+                      type: string
+                  description: The ID of the purchased vehicle to which the VIN will be assigned.
             requestBody:
                 required: true
                 content:
@@ -123,77 +125,77 @@ paths:
                 - oemAdminAuth: []
     /oem_onauth_v2/token:
         post:
-            summary: Endpoint to authenticate an OEM admin account and return a valid bearer token.
+            summary: Authenticate an OEM admin account and return a valid bearer token.
             requestBody:
-            required: true
-            content:
-                application/json:
-                schema:
-                    type: object
-                    properties:
-                    oemKey:
-                        type: string
-                        description: Key to identify and authenticate the OEM admin.
-                    username:
-                        type: string
-                        description: Username of the admin account.
-                    password:
-                        type: string
-                        description: Password of the admin account.
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                oemKey:
+                                    type: string
+                                    description: Key to identify and authenticate the OEM admin.
+                                username:
+                                    type: string
+                                    description: Username of the admin account.
+                                password:
+                                    type: string
+                                    description: Password of the admin account.
             responses:
                 "200":
                     description: Successfully authenticated and fetched access token.
                     content:
-                    application/json:
-                        schema:
-                        type: object
-                        properties:
-                            accessToken:
-                                type: string
-                                description: The access token for authenticated requests.
-                            expiryTime:
-                                type: integer
-                                description: The expiration time of the token formatted as a Unix timestamp (milliseconds since Unix epoch).
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    accessToken:
+                                        type: string
+                                        description: The access token for authenticated requests.
+                                    expiryTime:
+                                        type: integer
+                                        description: The expiration time of the token formatted as a Unix timestamp (milliseconds since Unix epoch).
                 "400":
                     description: Bad request due to missing parameters or invalid user credentials.
                     content:
-                    application/json:
-                        schema:
-                        type: object
-                        properties:
-                            error:
-                            type: string
-                            description: Details the reason for the request failure, such as missing parameters or invalid credentials.
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    error:
+                                        type: string
+                                        description: Details the reason for the request failure, such as missing parameters or invalid credentials.
                 "401":
                     description: Unauthorized request due to failed authentication.
                     content:
-                    application/json:
-                        schema:
-                        type: object
-                        properties:
-                            error:
-                            type: string
-                            description: Explanation of why authentication failed.
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    error:
+                                        type: string
+                                        description: Explanation of why authentication failed.
                 "403":
                     description: Forbidden request due to invalid account type or access denied.
                     content:
-                    application/json:
-                        schema:
-                        type: object
-                        properties:
-                            error:
-                            type: string
-                            description: Explanation of why access was denied.
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    error:
+                                        type: string
+                                        description: Explanation of why access was denied.
                 "500":
                     description: Server error when trying to authenticate the admin account.
                     content:
-                    application/json:
-                        schema:
-                        type: object
-                        properties:
-                            error:
-                            type: string
-                            description: Detailed message of the server error encountered during the process.
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    error:
+                                        type: string
+                                        description: Detailed message of the server error encountered during the process.
     /oem_oncreate_v2/pickUpLocation:
         post:
             summary: Add a new pickup location
@@ -201,15 +203,16 @@ paths:
                 required: true
                 content:
                     application/json:
-                        type: object
-                        required:
-                            - oemKey
-                            - pickUpLocation
-                        properties:
-                            oemKey:
-                                type: string
-                            pickUpLocation:
-                                $ref: "#/components/schemas/PickUpLocation"
+                        schema:
+                            type: object
+                            required:
+                                - oemKey
+                                - pickUpLocation
+                            properties:
+                                oemKey:
+                                    type: string
+                                pickUpLocation:
+                                    $ref: "#/components/schemas/PickUpLocation"
             responses:
                 "200":
                     description: Successfully added the pickup location.
@@ -217,22 +220,22 @@ paths:
                     description: Bad Request. Possible reasons include missing parameters or invalid data.
                     content:
                         application/json:
-                        schema:
-                            type: object
-                            properties:
-                            error:
-                                type: string
-                                example: "No oemId found for the given oemKey: {oemKey}"
+                            schema:
+                                type: object
+                                properties:
+                                    error:
+                                        type: string
+                                        example: "No oemId found for the given oemKey: {oemKey}"
                 "401":
                     description: Unauthorized. Authentication failed.
                     content:
                         application/json:
-                        schema:
-                            type: object
-                            properties:
-                            error:
-                                type: string
-                                example: "Authentication failed"
+                            schema:
+                                type: object
+                                properties:
+                                    error:
+                                        type: string
+                                        example: "Authentication failed"
             security:
                 - oemAdminAuth: []
             x-code-samples:
@@ -489,6 +492,7 @@ components:
                             metadata:
                                 type: object
                                 description: Optional. This is only relevant for vehicles currently. This object stores misc data that will be passed along to the checkoutCart object (and subsequent purchased vehicle object). Note that existingPayments will not be passed along and is relevant for creating preorder carts.
+                                additionalProperties: true
                                 properties:
                                     existingPayments:
                                         type: array
@@ -515,7 +519,6 @@ components:
                                                     enum:
                                                         - OEM
                                                         - EKHO
-                                    additionalProperties: true
                                 example:
                                     {
                                         metadataOpt1:
@@ -588,7 +591,7 @@ components:
                             properties:
                                 paymentTypeEnum:
                                     type: string
-                                    value: STANDARD_RESERVATION
+                                    enum: [STANDARD_RESERVATION]
                         CHECKOUT_FULL_PAYMENT:
                             type: object
                             description: If we're allowing full payment at chekcout. If this exists and isn't null, the OEM supports this payment type. The other properties inform how we handle this payment type
@@ -598,7 +601,7 @@ components:
                             properties:
                                 paymentTypeEnum:
                                     type: string
-                                    value: CHECKOUT_FULL_PAYMENT
+                                    enum: [CHECKOUT_FULL_PAYMENT]
                                 fullPaymentDiscountPerc:
                                     type: number
                                     description: The percentage discount we give the buyer if they pay in full
@@ -611,7 +614,7 @@ components:
                             properties:
                                 paymentTypeEnum:
                                     type: string
-                                    value: LOAN_DOWNPAYMENT
+                                    enum: [LOAN_DOWNPAYMENT]
                                 checkoutDownPaymentPerc:
                                     type: number
                                     description: The percentage of the total order price that we require the buyer to pay at checkout
@@ -825,13 +828,6 @@ components:
                 fulfillmentDetails:
                     type: object
                     description: The following optional properties are provided by the OEM at time of setting vehicleFulfillmentStatus to SHIPPED.
-                    required:
-                        # OPTIONAL BELOW
-                        # - vehicleTrackingReference
-                        # - contactNumber
-                        # - companyName
-                        # - msoTrackingReference
-                        # - msoSent
                     properties:
                         vehicleTrackingReference:
                             description: Tracking number or link.
