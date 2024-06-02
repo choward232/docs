@@ -25,6 +25,7 @@
 		"name": "OEM Admin Portal",
 		"url": "https://admin.ekhodealer.com"
 	},
+	"openapi": ["/external_api.yaml"],
 	"tabs": [
 		{
 			"name": "API Reference",
@@ -48,6 +49,15 @@
 			"pages": [
 				"essentials/ekho-terminology",
 				"essentials/vehicle-order-lifecycle"
+			]
+		},
+		{
+			"group": "API Reference",
+			"pages": [
+				"api-reference/determine-if-a-sale-can-be-facilitated-and-create-a-checkout-cart",
+				"api-reference/assign-a-vin-to-a-purchased-vehicle",
+				"api-reference/authenticate-an-oem-admin-account-and-return-a-valid-bearer-token",
+				"api-reference/add-a-new-pickup-location"
 			]
 		}
 	],
