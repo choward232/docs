@@ -54,9 +54,9 @@
 		{
 			"group": "API Reference",
 			"pages": [
-				"api-reference/determine-if-a-sale-can-be-facilitated-and-create-a-checkout-cart",
-				"api-reference/assign-a-vin-to-a-purchased-vehicle",
-				"api-reference/authenticate-an-oem-admin-account-and-return-a-valid-bearer-token",
+				"api-reference/create-a-checkout-cart",
+				"api-reference/assign-vin-to-a-vehicle",
+				"api-reference/fetch-oem-bearer-token",
 				"api-reference/add-a-new-pickup-location"
 			]
 		}
