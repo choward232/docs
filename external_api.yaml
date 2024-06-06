@@ -266,6 +266,7 @@ components:
                 # - boltOnsAlreadyAssigned (tells us if we need to assign bolt-ons to the vehicles in the cart or not)
                 # - registrationState
                 # - ecommUserId
+                # - ecommOrderId
                 # - source
                 # - ekhoCheckoutCartId
                 # - orderCreationType (optional for backwards compatibility => default to ORGANIC if not set)
@@ -540,7 +541,10 @@ components:
                     description: Whether or not we need to assign bolt-ons to the vehicles in the cart. If true, all vehicles' boltOnAccessories arrays will be set and all accessories' boltOnVehicleIds arrays will be set. Default value (if not provided) is false
                 ecommUserId:
                     type: string
-                    description: Optional. The id of the user in the ecomm system. Set to "0" if guest or unknown
+                    description: Optional. The id of the user in the ecomm system
+                ecommOrderId:
+                    type: string
+                    description: Optional. The id of the order in the ecomm system
                 ekhoCheckoutCartId:
                     type: string
                     description: Optional. If you would like for us to overwrite an existing checkoutCart with the same id, provide the id here. If you don't provide this, we will create a new checkoutCart with a new id
