@@ -522,19 +522,17 @@ components:
                                                         - EKHO
                                 example:
                                     {
-                                        metadataOpt1:
-                                            {
-                                                existingPayments:
-                                                    [
-                                                        {
-                                                            amount: 1000,
-                                                            type: "PREORDER",
-                                                            recipient: "OEM",
-                                                        },
-                                                    ],
-                                                randomField: "randomValue",
-                                            },
+                                        existingPayments:
+                                            [
+                                                {
+                                                    amount: 1000,
+                                                    type: "PREORDER",
+                                                    recipient: "OEM",
+                                                },
+                                            ],
+                                        randomField: "randomValue",
                                     }
+
                 # Optional fields below
                 boltOnsAlreadyAssigned:
                     type: boolean
