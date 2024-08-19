@@ -4,4 +4,561 @@ description: 'This page will overview the communications sent to the buyer and O
 icon: 'envelope-open-text'
 ---
 
-<iframe src="https://drive.google.com/file/d/1Nm-ncKwYSCKguZ-uiOSCt2KxACG-hJ1G/preview" width="640" height="480" allow="autoplay"></iframe>
+## Pre Orders
+
+### Pre Order Confirmation
+
+-   **Context:** Email sent when a buyer places a pre order on Ekho.
+-   **Audience:** Sent to both the buyer and the OEM.
+
+<div
+	style={{
+		display: 'flex',
+		justifyContent: 'center',
+		alignItems: 'center',
+		gap: '20px',
+	}}
+>
+	<img
+		src='../emailScreenshots/preOrderConfirmation.png'
+		alt='Pre Order Confirmation'
+		style={{ height: '400px' }}
+	/>
+	<img
+		src='../emailScreenshots/preOrderConfirmationOEM.png'
+		alt='Pre Order Confirmation for OEM'
+		style={{ height: '400px' }}
+	/>
+</div>
+<p style={{ textAlign: 'center' }}>Left: buyer email | Right: OEM email.</p>
+
+### Pre Order Refund
+
+-   **Context:** Email sent when an OEM refunds a pre order.
+-   **Trigger:** Sent to the buyer.
+
+<div
+	style={{
+		display: 'flex',
+		justifyContent: 'center',
+		alignItems: 'center',
+		gap: '20px',
+	}}
+>
+	<img
+		src='../emailScreenshots/preOrderRefund.png'
+		alt='Pre Order Refund'
+		style={{
+			maxWidth: '100%',
+			height: 'auto',
+			display: 'block',
+			margin: '0 auto',
+		}}
+	/>
+	<img
+		src='../emailScreenshots/cancelPreOrderTrigger.png'
+		alt='Cancel Pre Order Trigger'
+		style={{
+			maxWidth: '100%',
+			height: 'auto',
+			display: 'block',
+			margin: '0 auto',
+		}}
+	/>
+</div>
+<p style={{ textAlign: 'center' }}>
+	Left: buyer email | Right: Trigger in Admin Portal.
+</p>
+
+### Pre Order Conversion
+
+-   **Context:** Email sent to a buyer when converting a pre order.
+-   **Trigger:** When the buyer's pre order is converted.
+
+<div
+	style={{
+		display: 'flex',
+		justifyContent: 'center',
+		alignItems: 'center',
+		gap: '20px',
+	}}
+>
+	<img
+		src='../emailScreenshots/preOrderConversion.png'
+		alt='Pre Order Conversion'
+		style={{
+			maxWidth: '100%',
+			height: 'auto',
+			display: 'block',
+			margin: '0 auto',
+		}}
+	/>
+	<img
+		src='../emailScreenshots/convertPreOrderTrigger.png'
+		alt='Convert Pre Order Trigger'
+		style={{
+			maxWidth: '100%',
+			height: 'auto',
+			display: 'block',
+			margin: '0 auto',
+		}}
+	/>
+</div>
+<p style={{ textAlign: 'center' }}>
+	Left: buyer email | Right: Trigger in Admin Portal.
+</p>
+
+## Payments
+
+### Full Payment Received
+
+-   **Context:** Email sent to the buyer and OEM once an order is fully paid.
+-   **Trigger:** When a cash or cashEarly buyer pays off the remaining balance through ACH or card.
+    <div
+    	style={{
+    		display: 'flex',
+    		justifyContent: 'center',
+    		alignItems: 'center',
+    		gap: '20px',
+    	}}
+    >
+    	<img
+    		src='../emailScreenshots/fullPaymentReceived.png'
+    		alt='Pre Order Conversion'
+    		style={{
+    			maxWidth: '75%',
+    			height: 'auto',
+    			display: 'block',
+    			margin: '0 auto',
+    		}}
+    	/>
+    	<img
+    		src='../emailScreenshots/fullPaymentReceivedOEM.png'
+    		alt='Pre Order Conversion'
+    		style={{
+    			maxWidth: '75%',
+    			height: 'auto',
+    			display: 'block',
+    			margin: '0 auto',
+    		}}
+    	/>
+    </div>
+    <p style={{ textAlign: 'center' }}>Left: buyer email | Right: OEM email.</p>
+
+### Lender Payment Received
+
+-   **Context:** Email sent to the OEM when the financed amount is transferred to the OEM's Stripe account.
+-   **Trigger:** When a cash or cashEarly buyer pays off the remaining balance through ACH or card.
+    <div
+    	style={{
+    		display: 'flex',
+    		justifyContent: 'center',
+    		alignItems: 'center',
+    		gap: '20px',
+    	}}
+    >
+    	<img
+    		src='../emailScreenshots/lenderPaymentReceivedOEM.png'
+    		alt='Pre Order Conversion'
+    		style={{
+    			maxWidth: '75%',
+    			height: 'auto',
+    			display: 'block',
+    			margin: '0 auto',
+    		}}
+    	/>
+    </div>
+
+### ACH Payment Failed
+
+-   **Context:** Email sent to the buyer when their ACH transfer for a down payment or remaining balance fails.
+    <div
+    	style={{
+    		display: 'flex',
+    		justifyContent: 'center',
+    		alignItems: 'center',
+    		gap: '20px',
+    	}}
+    >
+    	<img
+    		src='../emailScreenshots/achFailed.png'
+    		alt='Pre Order Conversion'
+    		style={{
+    			maxWidth: '75%',
+    			height: 'auto',
+    			display: 'block',
+    			margin: '0 auto',
+    		}}
+    	/>
+    </div>
+
+### Refund Initiated
+
+-   **Context:** Email sent to the buyer when Ekho cancels and refunds their order.
+-   **Trigger:** At the moment, only Ekho is able to cancel and refund an active order.
+    <div
+    	style={{
+    		display: 'flex',
+    		justifyContent: 'center',
+    		alignItems: 'center',
+    		gap: '20px',
+    	}}
+    >
+    	<img
+    		src='../emailScreenshots/fullRefund.png'
+    		alt='Pre Order Conversion'
+    		style={{
+    			maxWidth: '75%',
+    			height: 'auto',
+    			display: 'block',
+    			margin: '0 auto',
+    		}}
+    	/>
+    </div>
+
+## Abandoned Cart Re-Engagement
+
+-   **Context:** Email sent to the buyer if they abandoned either their pre order or checkout session.
+-   **Trigger:** Buyer inputs their contact information but does not place their order.
+-   **Intervals:** Sent 1hr after abandoning cart, 72hrs (after first email), 120hrs (after second email).
+    -   OEMs can choose to apply a fixed discount amount upon the third and last re-engagement.
+
+<div
+	style={{
+		display: 'flex',
+		justifyContent: 'center',
+		alignItems: 'center',
+		gap: '20px',
+	}}
+>
+	<img
+		src='../emailScreenshots/abandonedCart1.png'
+		alt='Pre Order Conversion'
+		style={{
+			maxWidth: '100%',
+			height: 'auto',
+			display: 'block',
+			margin: '0 auto',
+		}}
+	/>
+	<img
+		src='../emailScreenshots/abandonedCart2.png'
+		alt='Convert Pre Order Trigger'
+		style={{
+			maxWidth: '100%',
+			height: 'auto',
+			display: 'block',
+			margin: '0 auto',
+		}}
+	/>
+	<img
+		src='../emailScreenshots/abandonedCart3.png'
+		alt='Convert Pre Order Trigger'
+		style={{
+			maxWidth: '100%',
+			height: 'auto',
+			display: 'block',
+			margin: '0 auto',
+		}}
+	/>
+	<img
+		src='../emailScreenshots/abandonedCart3Discount.png'
+		alt='Convert Pre Order Trigger'
+		style={{
+			maxWidth: '100%',
+			height: 'auto',
+			display: 'block',
+			margin: '0 auto',
+		}}
+	/>
+</div>
+<p style={{ textAlign: 'center' }}>
+	Images from left to right: first, second, third, and third re-engagement
+	with a discount.
+</p>
+
+## Checkout
+
+### Checkout Confirmation
+
+-   **Context:** Email sent to buyer confirming their placed order.
+
+    <div
+    	style={{
+    		display: 'flex',
+    		justifyContent: 'center',
+    		alignItems: 'center',
+    		gap: '20px',
+    	}}
+    >
+    	<img
+    		src='../emailScreenshots/checkoutConfirmation.png'
+    		alt='Pre Order Conversion'
+    		style={{ height: '400px' }}
+    	/>
+    </div>
+
+## Financing
+
+### Lender's Decision
+
+-   **Context:** Buyer received a financing decision from the lender (either declined or approval with no stipulations).
+
+    <div
+    	style={{
+    		display: 'flex',
+    		justifyContent: 'center',
+    		alignItems: 'center',
+    		gap: '20px',
+    	}}
+    >
+    	<img
+    		src='../emailScreenshots/lenderDecision.png'
+    		alt='Pre Order Conversion'
+    		style={{
+    			maxWidth: '75%',
+    			height: 'auto',
+    			display: 'block',
+    			margin: '0 auto',
+    		}}
+    	/>
+    </div>
+
+### Conditional Offer Received
+
+-   **Context:** Buyer received a conditional offer from the lender and must provide additional information to clear the stipulations.
+
+    <div
+    	style={{
+    		display: 'flex',
+    		justifyContent: 'center',
+    		alignItems: 'center',
+    		gap: '20px',
+    	}}
+    >
+    	<img
+    		src='../emailScreenshots/conditionalOffer.png'
+    		alt='Pre Order Conversion'
+    		style={{
+    			maxWidth: '75%',
+    			height: 'auto',
+    			display: 'block',
+    			margin: '0 auto',
+    		}}
+    	/>
+    </div>
+
+### Stipulations Re-requested
+
+-   **Context:** initial information provided were insufficient, must provide additional information to clear stipulations. Ekho will provide a note with instructions or corrections.
+
+    <div
+    	style={{
+    		display: 'flex',
+    		justifyContent: 'center',
+    		alignItems: 'center',
+    		gap: '20px',
+    	}}
+    >
+    	<img
+    		src='../emailScreenshots/stipsRequest.png'
+    		alt='Pre Order Conversion'
+    		style={{
+    			maxWidth: '75%',
+    			height: 'auto',
+    			display: 'block',
+    			margin: '0 auto',
+    		}}
+    	/>
+    </div>
+
+### Sign Final Financing Contract
+
+-   **Context:** Buyer must sign the final financing agreement prior to delivery.
+-   **Trigger:** OEM marks the vehicle as ready to ship within a week
+    <div
+    	style={{
+    		display: 'flex',
+    		justifyContent: 'center',
+    		alignItems: 'center',
+    		gap: '20px',
+    	}}
+    >
+    	<img
+    		src='../emailScreenshots/ricSignature.png'
+    		alt='Pre Order Conversion'
+    		style={{
+    			maxWidth: '75%',
+    			height: 'auto',
+    			display: 'block',
+    			margin: '0 auto',
+    		}}
+    	/>
+    </div>
+
+## Titling & Registration
+
+### VIN Assigned
+
+-   **Context:** Buyer was previously blocked at insurance until VIN was assigned.
+-   **Trigger:** OEM assigns the VIN for the order in the Admin Portal.
+    <div
+    	style={{
+    		display: 'flex',
+    		justifyContent: 'center',
+    		alignItems: 'center',
+    		gap: '20px',
+    	}}
+    >
+    	<img
+    		src='../emailScreenshots/vinAssigned.png'
+    		alt='Pre Order Conversion'
+    		style={{
+    			maxWidth: '50%',
+    			height: 'auto',
+    			display: 'block',
+    			margin: '0 auto',
+    		}}
+    	/>
+    </div>
+
+### Paperwork Section Ready
+
+-   **Context:** Buyer can begin their paperwork for titling and registering their vehicle.
+
+    <div
+    	style={{
+    		display: 'flex',
+    		justifyContent: 'center',
+    		alignItems: 'center',
+    		gap: '20px',
+    	}}
+    >
+    	<img
+    		src='../emailScreenshots/paperwork.png'
+    		alt='Pre Order Conversion'
+    		style={{
+    			maxWidth: '50%',
+    			height: 'auto',
+    			display: 'block',
+    			margin: '0 auto',
+    		}}
+    	/>
+    </div>
+
+### Temporary Tag Uploaded
+
+-   **Context:** Buyer can download and print their temporary tag to enjoy their vehicle upon delivery.
+-   **Trigger:** OEM marks the vehicle as shipped or delivered in the Admin Portal.
+    <div
+    	style={{
+    		display: 'flex',
+    		justifyContent: 'center',
+    		alignItems: 'center',
+    		gap: '20px',
+    	}}
+    >
+    	<img
+    		src='../emailScreenshots/tempTagUploaded.png'
+    		alt='Pre Order Conversion'
+    		style={{
+    			maxWidth: '75%',
+    			height: 'auto',
+    			display: 'block',
+    			margin: '0 auto',
+    		}}
+    	/>
+    </div>
+
+## Automated Re-Engagements
+
+Ekho has built an internal infrastructure to detect outstanding actions for a given order and automatically re-engage the buyer to continue making progess with their order.
+
+-   **Interval:** The first re-engagement is sent 6 hours after the last buyer activity. Subsequent re-engagements are sent at increasing intervals: 24 hours after the first, 48 hours after the second, and 72 hours after the third re-engagement, assuming continous inactivity.
+    {' '}
+    <div
+    	style={{
+    		display: 'flex',
+    		justifyContent: 'center',
+    		alignItems: 'center',
+    		gap: '20px',
+    	}}
+    >
+    	<img
+    		src='../emailScreenshots/submitApplicationAutomation.png'
+    		alt='Pre Order Conversion'
+    		style={{
+    			maxWidth: '75%',
+    			height: 'auto',
+    			display: 'block',
+    			margin: '0 auto',
+    		}}
+    	/>
+    	<img
+    		src='../emailScreenshots/provideStipsAutomation.png'
+    		alt='Pre Order Conversion'
+    		style={{
+    			maxWidth: '75%',
+    			height: 'auto',
+    			display: 'block',
+    			margin: '0 auto',
+    		}}
+    	/>
+    	<img
+    		src='../emailScreenshots/financingDecisionAutomation.png'
+    		alt='Pre Order Conversion'
+    		style={{
+    			maxWidth: '75%',
+    			height: 'auto',
+    			display: 'block',
+    			margin: '0 auto',
+    		}}
+    	/>
+    </div>
+    <p style={{ textAlign: 'center' }}>
+    	Images from left to right: reminder to submit financing application,
+    	provide stipulation information, and make decision on financing offer.
+    </p>
+    <div
+    	style={{
+    		display: 'flex',
+    		justifyContent: 'center',
+    		alignItems: 'center',
+    		gap: '20px',
+    	}}
+    >
+    	<img
+    		src='../emailScreenshots/completeIdentityAutomation.png'
+    		alt='Pre Order Conversion'
+    		style={{
+    			maxWidth: '75%',
+    			height: 'auto',
+    			display: 'block',
+    			margin: '0 auto',
+    		}}
+    	/>
+    	<img
+    		src='../emailScreenshots/signBOSAutomation.png'
+    		alt='Pre Order Conversion'
+    		style={{
+    			maxWidth: '75%',
+    			height: 'auto',
+    			display: 'block',
+    			margin: '0 auto',
+    		}}
+    	/>
+    	<img
+    		src='../emailScreenshots/completePaperworkAutomation.png'
+    		alt='Pre Order Conversion'
+    		style={{
+    			maxWidth: '75%',
+    			height: 'auto',
+    			display: 'block',
+    			margin: '0 auto',
+    		}}
+    	/>
+    </div>
+    <p style={{ textAlign: 'center' }}>
+    	Images from left to right: reminder to complete identity verification,
+    	sign the Bill of Sale, and ship titling paperwork.
+    </p>
