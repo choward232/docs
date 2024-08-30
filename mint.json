@@ -63,5 +63,8 @@
 	],
 	"footerSocials": {
 		"linkedin": "https://www.linkedin.com/company/93276378"
+	},
+	"seo": {
+		"indexHiddenPages": true
 	}
 }
