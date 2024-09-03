@@ -46,10 +46,7 @@
 		},
 		{
 			"group": "Essentials",
-			"pages": [
-				"essentials/ekho-terminology",
-				"essentials/ekho-communications"
-			]
+			"pages": ["essentials/ekho-communications"]
 		},
 		{
 			"group": "API Reference",

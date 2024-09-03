@@ -22,9 +22,9 @@ icon: 'clipboard-list'
 
 <CardGroup cols={2}>
 	<Card
-		title='Ekho Terminology'
+		title='Ekho Glossary'
 		icon='book-sparkles'
-		href='/essentials/ekho-terminology'
+		href='/essentials/ekho-glossary'
 	>
 		Overviews terminology that is oftentimes referenced in this document,
 		especially values of specific columns in a given table view in the Admin
@@ -36,7 +36,7 @@ icon: 'clipboard-list'
 		href='/essentials/ekho-communications'
 	>
 		Overviews email copy that is oftentimes triggered upon completion of
-		certain steps Ekho, the OEM, or the customer completes.
+		certain steps Ekho, the OEM, or the buyer completes.
 	</Card>
 </CardGroup>
 
@@ -53,45 +53,47 @@ icon: 'clipboard-list'
 
 ### Action Buttons
 
-| Button Name       | Enabled                                                                                                 | Description                                                                                                                       | Communications to Customer                                                      |
-| :---------------- | :------------------------------------------------------------------------------------------------------ | :-------------------------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------ |
-| Convert Preorder  | Available as a one time action                                                                          | Invite the customer back to complete full checkout experience to convert the preorder                                             | Email and SMS sent to the customer with their unique checkout link provided     |
-| Preview Cart      | Available when conversion invitation has been sent out, but not yet converted (i.e. completed checkout) | Opens a pop up to either copy the shareable checkout link for the buyer or view a preview link that does not impact analytics     | N/A - but can be used to copy a shareable link to send to the customer          |
-| Cancel and Refund | Available as long as the preorder has not converted (i.e. customer did not complete checkout)           | Cancels the preorder, initiates a refund to the customer's original payment method, and reverses the funds transferred to the OEM | Email sent to the customer confirming the full refund of their preorder deposit |
+| Button Name       | Enabled                                                                                                 | Description                                                                                                                    | Communications to Buyer                                                      |
+| :---------------- | :------------------------------------------------------------------------------------------------------ | :----------------------------------------------------------------------------------------------------------------------------- | :--------------------------------------------------------------------------- |
+| Convert Preorder  | Available as a one time action                                                                          | Invites the buyer back to convert the preorder by completing checkout                                                          | Email and SMS sent to the buyer with their unique checkout link provided     |
+| Preview Cart      | Available when conversion invitation has been sent out, but not yet converted (i.e. completed checkout) | Opens a pop up to either copy the shareable checkout link for the buyer or view a preview link that does not impact analytics  | N/A - but can be used to copy a shareable link to send to the buyer          |
+| Cancel and Refund | Available as long as the preorder has not converted (i.e. buyer did not complete checkout)              | Cancels the preorder, initiates a refund to the buyer's original payment method, and reverses the funds transferred to the OEM | Email sent to the buyer confirming the full refund of their preorder deposit |
+
+### Preorder Steps
 
 <Steps>
-	<Step title='Customer Places a Preorder'>
-		A customer will appear in the "Preorders" tab once they complete their
+	<Step title='Buyer Places a Preorder'>
+		A buyer will appear in the "Preorders" tab once they complete their
 		preorder through Ekho.
 		<br /> **-- Preorder status:** Awaiting Conversion
 		<br /> **-- Available buttons:** Convert Preorder, Cancel and Refund
 	</Step>
 	<Step title='Convert Preorder'>
 		When you are ready to convert a preorder click the "Convert Preorder"
-		button to notify the customer. This button should be clicked when the
-		OEM is ready to shortly begin production of the preorder and would like
-		to invite the customer to complete their full checkout to convert into a
+		button to notify the buyer. This button should be clicked when the OEM
+		is ready to shortly begin production of the preorder and would like to
+		invite the buyer to complete their full checkout to convert into a
 		guaranteed sale. See [Ekho
 		Communications](/essentials/ekho-communications#preorder-conversion) for
 		email copy.
 		<br /> **-- Preorder status:** Awaiting Conversion
-		<br /> **-- Available buttons:** Preview Cart (preview link of
-		customer's unique checkout basket), Cancel and Refund
+		<br /> **-- Available buttons:** Preview Cart (preview link of buyer’s
+		unique checkout basket), Cancel and Refund
 	</Step>
-	<Step title='Customer Completes Checkout'>
-		A customer completes checkout using their unique link provided in email
-		and SMS when the OEM clicks "Convert Preorder". At checkout they can
-		select to either pay in full or apply for financing. It's important to
-		note that conversion of a preorder does not mean the sale is guaranteed.
-		The preorder is ready for OEM action only when the buyer completes all
-		the steps to get their order into the ["Awaiting OEM
+	<Step title='Buyer Completes Checkout'>
+		A buyer completes checkout using their unique link provided in email and
+		SMS when the OEM clicks "Convert Preorder". At checkout they can select
+		to either pay in full or apply for financing. It's important to note
+		that conversion of a preorder does not mean the sale is guaranteed. The
+		preorder is ready for OEM action only when the buyer completes all the
+		steps to get their order into the ["Awaiting OEM
 		Action"](/essentials/vehicle-order-lifecycle#awaiting-oem-action) tab.
 		<br /> **-- Preorder status:** Converted
 		<br /> **-- Available buttons:** N/A as the order is no longer a
 		preorder
 	</Step>
 	<Step title='Complete!'>
-		The preorder will now begin it's journey from "Pending" all the way to
+		The preorder will now begin its journey from "Pending" all the way to
 		"Fulfilled"!
 	</Step>
 </Steps>
@@ -112,33 +114,33 @@ icon: 'clipboard-list'
 <Tabs>
 	<Tab title='Financing Orders'>
 		<Steps>
-			<Step title='Submit Application'>
+			<Step title='Submit Financing Application'>
 				Applications are submitted either in checkout or their portal,
 				depending on the selections chosen at checkout. A decision will
 				usually be provided within minutes.
-				<br /> **-- Buyer submitted financing app:** Not yet -> Yes
-				<br /> **-- Lender's decision:** Awaiting app submission ->
+				<br /> **-- Buyer Submitted Financing App:** Not yet -> Yes
+				<br /> **-- Lender's Decision:** Awaiting app submission ->
 				Awaiting lender decision
 			</Step>
 			<Step title='Conditional Offer Received (if applicable)'>
 				The lender needs additional information to release the official
 				offer (i.e. proof of income, proof of residence, etc.)
 				<br /> **-- Stips pending evidence:** Will list out the stipulations
-				we are still awaiting from the customer
-				<br /> **-- Lender's decision:** Approval pending stipulations
+				we are still awaiting from the buyer
+				<br /> **-- Lender's Decision:** Approval pending stipulations
 			</Step>
 			<Step title='Make Decision on Financing Offer'>
-				Once a full offer is given, the customer will make a decision
+				Once a full offer is given, the buyer will make a decision
 				whether to accept or deny. If they were rejected, this step will
 				be skipped.
-				<br /> **-- Lender's decision:** Rejected, Counter Offer, or Accepted
-				<br /> **-- Buyer's decision on financing offer:** Awaiting
+				<br /> **-- Lender's Decision:** Rejected, Counter Offer, or Accepted
+				<br /> **-- Buyer’s decision on financing offer:** Awaiting
 				buyer decision, Accepted, or Declined
 			</Step>
 			<Step title='Complete Identity Verification'>
-				Customer will need to complete identity verification by
-				providing the front and back of a government-issued ID. Results
-				of verification will be given within seconds.
+				Buyer will need to complete identity verification by providing
+				the front and back of a government-issued ID. Results of
+				verification will be given within seconds.
 			</Step>
 			<Step title='Complete!'>
 				Order will move into the "Awaiting OEM Action" table.
@@ -149,15 +151,15 @@ icon: 'clipboard-list'
 		<Steps>
 			<Step title='Sign Purchase Agreement'>
 				The Purchase Agreement is a legally binding contract signed by
-				non-financed orders. After the customer e-signs this document,
-				they are no longer eligible for a cancellation or refund.
+				non-financed orders. After the buyer e-signs this document, they
+				are no longer eligible for a cancellation or refund.
 				<br /> **-- Reason why pending:** Pending payment guarantee -> Pending
 				verification
 			</Step>
 			<Step title='Complete Identity Verification'>
-				Customer will need to complete identity verification by
-				providing the front and back of a government-issued ID. Results
-				of verification will be given within seconds.
+				Buyer will need to complete identity verification by providing
+				the front and back of a government-issued ID. Results of
+				verification will be given within seconds.
 			</Step>
 			<Step title='Complete!'>
 				Order will move into the "Awaiting OEM Action" table.
@@ -169,11 +171,11 @@ icon: 'clipboard-list'
 ## Awaiting OEM Action
 
 <Info>
-	**Cancellations & Refunds:** At this point, the customer is no longer
-	eligible for a cancellation and refund. Although the customer messaging will
-	indicate this, legally a financed order is able to cancel their loan. If
-	this is the case, Ekho will try our best to keep the sale alive and update
-	the OEM if there are any incentives we can provide to the customer.
+	**Cancellations & Refunds:** At this point, the buyer is no longer eligible
+	for a cancellation and refund. Although the buyer messaging will indicate
+	this, legally, a financed order is able to cancel their loan. If this is the
+	case, Ekho will try our best to keep the sale alive and update the OEM if
+	there are any incentives we can provide to the buyer.
 </Info>
 
 <Frame caption='Screenshot of the "Awaiting OEM Action" tab and its action buttons.'>
@@ -200,10 +202,10 @@ icon: 'clipboard-list'
 		Minnesota.
 	</Step>
 	<Step title='Mark Ready to Ship'>
-		OEM will click this button and confirm when a vehicle is ready to ship
-		within a week. For financed orders, this will notify the customer to
-		sign their final financing paperwork. Once signed, the financed order is
-		no longer eligible for a cancellation or refund.
+		OEM will click this button and confirm that the vehicle is ready to ship
+		within a week. For financed orders, this will notify the buyer to sign
+		their final financing paperwork. Once signed, the financed order is no
+		longer eligible for a cancellation or refund.
 	</Step>
 	<Step title='Complete!'>
 		Order will move into either the "Awaiting Buyer & Ekho Action" or "Kick
@@ -215,8 +217,8 @@ icon: 'clipboard-list'
 ## Awaiting Buyer & Ekho Action (if applicable)
 
 <Info>
-	It is of utmost importance for the Ekho team to ensure the number of orders
-	in here is minimal.
+	It is our utmost priority at Ekho to keep the number of orders in this
+	section as low as possible by proactively providing assistance to buyers.
 </Info>
 
 <Frame caption='Screenshot of the "Awaiting Buyer & Ekho Action" tab and its metadata.'>
@@ -240,7 +242,7 @@ For all the cases below, Ekho has set up automated re-engagements via email and 
 		requirements.
 	</Step>
 	<Step title='Awaiting Signatures on Final Financing Paperwork'>
-		Ekho is awaiting signatures from the customer on their final financing
+		Ekho is awaiting signatures from the buyer on their final financing
 		paperwork (which was made available after the OEM marked the order as
 		ready to be shipped).
 	</Step>
@@ -284,9 +286,8 @@ For all the cases below, Ekho has set up automated re-engagements via email and 
 				the delivery date at this point.
 			</Step>
 			<Step title='Mark as Ready for Pickup'>
-				Click the "Mark as Ready for Pickup" button to confirm the
-				customer can pick up their vehicle from their selected pickup
-				location.
+				Click the "Mark as Ready for Pickup" button to confirm the buyer
+				can pick up their vehicle from their selected pickup location.
 			</Step>
 			<Step title='Complete!'>
 				Order will move into the "Fulfillment in Progress" table.
@@ -304,7 +305,7 @@ For all the cases below, Ekho has set up automated re-engagements via email and 
 <Steps>
 	<Step title='Mark as Delivered or Picked Up By Buyer'>
 		Click the "Mark as Delivered To Buyer" or "Marked as Picked Up By Buyer"
-		button based on the delivery option the customer selected at checkout.
+		button based on the delivery option the buyer selected at checkout.
 	</Step>
 	<Step title='Complete!'>Order will move into the "Fulfilled" table.</Step>
 </Steps>
