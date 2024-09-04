@@ -47,8 +47,9 @@
 		{
 			"group": "Essentials",
 			"pages": [
-				"essentials/ekho-communications",
-				"essentials/vehicle-order-lifecycle"
+				"essentials/ekho-glossary",
+				"essentials/vehicle-order-lifecycle",
+				"essentials/ekho-communications"
 			]
 		},
 		{

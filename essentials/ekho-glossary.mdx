@@ -1,6 +1,6 @@
 ---
 title: 'Ekho Glossary'
-description: 'It is critical that you understand the following key properties and terminology to effectively understand how Ekho works. When applicable, these properties and their possible values will be referenced within your Ekho Admin Portal and in data payloads read from our API. '
+description: 'It is critical that you understand the following key properties and terminology to effectively know how Ekho works. When applicable, these properties and their possible values will be referenced within your Ekho Admin Portal and in data payloads read from our API.'
 icon: 'book-sparkles'
 ---
 
@@ -9,46 +9,63 @@ icon: 'book-sparkles'
 	meaning of a particular term, please `CTRL+F` on this screen.
 </Tip>
 
-## Preorders
+# Buyer Portal
 
-### Ekho Preorder
+#### Buyer Portal Home Page
 
-The buyer places a preorder through Ekho's preorder UI showcased below. Note, this is a separate transaction to the order placed through ["Ekho
-Checkout"](/essentials/ekho-glossary#ekho-checkout) at a later time.
+After [Ekho Checkout](/essentials/ekho-glossary#ekho-checkout), the buyer will be redirected to their Buyer Portal. Here they will be able to view all their orders and complete action items prior to delivery.
 
-<Frame caption='The UI when placing an Ekho Preorder.'>
-	<img src='../images/productUI/preOrderUI.png' />
+<Frame caption='The UI of the Buyer Portal.'>
+	<div style={{ display: 'flex', gap: '20px' }}>
+		<img
+			src='../images/productUI/bpVehiclesView.png'
+			style={{ height: '300px', objectFit: 'contain' }}
+		/>
+		<img
+			src='../images/productUI/bpSingleVehicle.png'
+			style={{ height: '300px', objectFit: 'contain' }}
+		/>
+	</div>
 </Frame>
 
-### Preorder Deposit
+# Checkout & Placing an Order
 
-The amount required for a buyer to secure a preorder. This fully refundable amount is configurable by the OEM and can be the full amount (exlusive of applicable taxes, fees, and delivery), a reservation amount, or both.
+#### Checkout Payment Selection
 
-### Preorder Lead Time
+The payment selection a buyer selects at [Ekho Checkout](/essentials/ekho-glossary#ekho-checkout). The options can be the following:
 
-The text showcased on the top right indicating the estimated delivery date for the preorder placed. This copy is configurable by the OEM to a specific date or time window (i.e. December 1st, 2024, Spring 2025, etc.).
+-   **Finance**: the buyer will apply for financing at checkout.
+-   **Reserve**: a deposit sufficient enough to begin order processing. The full remaining balance will be required prior to shipment. The reservation amount is configurable by the OEM and can be removed as an option if desired.
+-   **Pay by card**: the buyer will pay the full balance via card.
+-   **[Coming soon] Third party financing**: the buyer will bring in their own financing such as a local credit union, personal financing, etc.
+-   **[Coming soon] Pay by ACH**: the buyer will pay the full balance or reservation amount via ACH / bank transfer.
 
-## Checkout & Order Processing
+#### Ekho Checkout
 
-### Ekho Checkout
-
-The UI as when placing a Full Order through Ekho's Checkout UI showcased below.
+The UI when placing an order through Ekho's Checkout showcased below.
 
 <Frame caption='The UI of Ekho Checkout.'>
 	<img src='../images/productUI/checkoutUI.png' />
 </Frame>
 
-### Checkout Payment Selection
+#### Fulfillment Selection
 
-The payment selection a buyer selects at Ekho Checkout. The options can be the following:
+The fulfillment selection chosen at [Ekho Checkout](/essentials/ekho-glossary#ekho-checkout) indicating delivery to a specified address or pick up from a pre-defined list of locations provided by the OEM.
 
--   Finance: the buyer will apply for financing at checkout
--   Reserve: an amount configurable by the OEM and can be removed as an option if desired by the OEM
--   Pay by card: the buyer will pay the full balance via card
--   [Coming soon] Third party financing: the buyer will bring in their own financing through (i.e. local credit union, personal financing, etc.)
--   [Coming soon] Pay by ACH: the buyer will pay the full balance or reservation amount via ACH / bank transfer
+<Frame caption='The UI of selecting a pick up location or providing a delivery address at Ekho Checkout.'>
+	<div style={{ display: 'flex', gap: '20px' }}>
+		<img
+			src='../images/productUI/pickUpUI.png'
+			style={{ height: '300px', objectFit: 'contain' }}
+		/>
+		<img
+			src='../images/productUI/deliveryUI.png'
+			style={{ height: '300px', objectFit: 'contain' }}
+		/>
+	</div>
+</Frame>
 
-### Prequalification
+#### Pre-qualification
 
 An interested financing buyer selects to get pre-qualified for financing at checkout. This decision will come out within seconds as either approved or needing additional information through the financing application.
 
@@ -65,26 +82,9 @@ An interested financing buyer selects to get pre-qualified for financing at chec
 	</div>
 </Frame>
 
-### Fulfillment Selection
+#### Registration Selection
 
-The selection chosen at Ekho Checkout indicating whether they would like to select delivery to a specified address or pick up at pre-defined pick up locations provided by the OEM.
-
-<Frame caption='The UI of selecting a pick up location or providing a delivery address at Ekho Checkout.'>
-	<div style={{ display: 'flex', gap: '20px' }}>
-		<img
-			src='../images/productUI/pickUpUI.png'
-			style={{ height: '300px', objectFit: 'contain' }}
-		/>
-		<img
-			src='../images/productUI/deliveryUI.png'
-			style={{ height: '300px', objectFit: 'contain' }}
-		/>
-	</div>
-</Frame>
-
-### Registration Selection
-
-The selection chosen at Ekho Checkout indicating the titling and registration option. These will vary based upon the specific requirements of the registration state, vehicle type, and payment selection.
+The selection chosen at [Ekho Checkout](/essentials/ekho-glossary#ekho-checkout) indicating the titling and registration option. The available options will vary based upon the specific requirements of the registration state, vehicle type, and [Checkout Payment Selection](/essentials/ekho-glossary#checkout-payment-selection). See [Registration and Titling Options](/essentials/ekho-glossary#registration-and-titling-options) for more details.
 
 <Frame caption='The UI of selecting the registration option(s) at Ekho Checkout.'>
 	<div style={{ display: 'flex', gap: '20px' }}>
@@ -103,9 +103,9 @@ The selection chosen at Ekho Checkout indicating the titling and registration op
 	</div>
 </Frame>
 
-### Submit Financing Application
+#### Submit Financing Application
 
-The buyer will continue to the financing application and submit the application if they selected "Financing" as the Checkout Payment Selection. If a buyer selects to "Reserve" at Ekho Checkout or orders more than one vehicle, they will submit the financing application in their Buyer Portal (TODO LINK).
+The buyer will continue to the financing application and submit the application if they selected "Finance" as the [Checkout Payment Selection](/essentials/ekho-glossary#checkout-payment-selection). If a buyer selects to "Reserve" or orders more than one vehicle, they will submit the financing application in their [Buyer Portal](/essentials/ekho-glossary#buyer-portal).
 
 <Frame caption='The UI of continuing to the financing application and ultimately submitting the application at Ekho Checkout.'>
 	<div style={{ display: 'flex', gap: '20px' }}>
@@ -120,90 +120,188 @@ The buyer will continue to the financing application and submit the application 
 	</div>
 </Frame>
 
-### Pending Order
+# Features
 
-Once an order is placed through Ekho Checkout, it will become a Pending Order. Please reference ["Pending Orders"](/essentials/vehicle-order-lifecycle#pending-orders) for more details on the prerequisites for an order to becom a Converted Order.
+#### Abandoned Carts
 
-### Converted Order
+View all the abandoned carts from [Ekho Checkout](/essentials/ekho-glossary#ekho-checkout) and [Ekho Preorder](/essentials/ekho-glossary#ekho-preorder). Here, you can see how many automated re-engagement emails have been sent to the buyer, copy a link to their checkout session, preview the link, and much more.
 
-An order will be "converted" once it completes all the prerequisites listed in ["Pending Orders"](/essentials/vehicle-order-lifecycle#pending-orders). At this point, the order is no longer cancelable or refundable (certain terms may apply).
+<Frame caption='The UI of Abandoned Carts in the Admin Portal.'>
+	<img src='../images/productUI/abandonedCartUI.png' />
+</Frame>
 
-## Financing
+#### Admin Portal
 
-### Conditional Offer
+The source of truth for all things Ekho for the OEM. This portal houses many of the features listed in this section, as well as taking action on orders as described in the [Vehicle Order Lifecycle](/essentials/vehicle-order-lifecycle) document.
 
-A buyer has received a conditional offer from the lender pending additional information to clear certain stipulations. The most common stipulations requested include, but are not limited to, proof of income, residence, addiitional income, and personal references. When the buyer provides all the necessary documentation to clear the stipulations, they will receive a full Financing Offer.
+#### Analytics
 
-### Financing Offer
+<Frame caption='Analytics in the Admin Portal.'>
+	<img src='../images/productUI/analyticsUI.png' />
+</Frame>
+
+#### Custom Purchase Links
+
+Create single or multi-use checkout links to send to individual buyers, include on your website, and/or send as a CTA in marketing campaigns. Custom purchase links can have unique discounts, specs, and acessories applied.
+
+<Frame caption='The UI of configuring a Custom Purchase Link in the Admin Portal.'>
+	<div style={{ display: 'flex', gap: '20px' }}>
+		<img
+			src='../images/productUI/purchaseLinkTable.png'
+			style={{ height: '300px', objectFit: 'contain' }}
+		/>
+		<img
+			src='../images/productUI/purchaseLinkConfigure.png'
+			style={{ height: '300px', objectFit: 'contain' }}
+		/>
+		<img
+			src='../images/productUI/purchaseLinkSettings.png'
+			style={{ height: '300px', objectFit: 'contain' }}
+		/>
+	</div>
+</Frame>
+
+#### Discount Campaigns
+
+Discount Campaigns can be created by the OEM to enable buyers to apply the code at checkout. Discount Campaigns can either be a fixed amount or percentage-based. Codes are active based on a defined time window and selected model(s).
+
+#### [Coming Soon] Reports
+
+# Financing
+
+#### Conditional Offer
+
+A buyer receives a conditional offer from the lender, pending additional information to clear certain stipulations. The most common stipulations requested include, but are not limited to, proof of income, residence, additional income, and personal references. When the buyer provides all the necessary documentation to clear the stipulations, they will receive a full Financing Offer.
+
+#### Financing Offer
 
 A buyer receives a final financing offer from the lender, either approved, counteroffered, or rejected.
 
-### Retail Installment Contract (RIC)
+#### Retail Installment Contract (RIC)
 
-The final financing contract signed by the buyer that "locks" in the deal. Once signed, a financing order is no longer eligble for a cancelation or refund. It is important to note that the RIC is only available when the OEM marks the order as ["Ready to Ship"](essentials/vehicle-order-lifecycle#awaiting-oem-action) in the Admin Portal.
+The final financing contract signed by the buyer that "locks" in the deal. Once signed, a financing order is no longer eligible for a cancellation or refund. It is important to note that the RIC is only available when the OEM marks the order as ["Ready to Ship"](essentials/vehicle-order-lifecycle#awaiting-oem-action) in the Admin Portal.
 
-## Paperwork
+# Order Processing
 
-### Bill of Sale
+#### Converted Order
 
-### Buyer Packet
+An order will be "converted" once it completes all the prerequisites listed in ["Pending Orders"](/essentials/vehicle-order-lifecycle#pending-orders). At this point, the order is no longer cancelable or refundable (certain terms may apply).
 
-### Manufacturer's Statement of Origin (MSO)
+#### Pending Order
 
-### Temporary Tag
+Once an order is placed through Ekho Checkout, it will become a Pending Order. Please reference ["Pending Orders"](/essentials/vehicle-order-lifecycle#pending-orders) for more details on the prerequisites for an order to become a Converted Order.
 
-## Payment Selection
+# Paperwork
 
-The payment method selected by the buyer. This will be initialized to whatever payment option the buyer selects at Checkout, but note that - in certain cases - it can change thereafter (e.g. if the buyer chooses financing at Checkout, gets rejected, and then chooses to pay in cash in the Buyer Portal). This can be one of the following values:
+#### Bill of Sale
 
-### Native Financing
+The document consummating the sale. E-signing this form is a prerequisite to kicking off fulfillment.
 
-The buyer has chosen to finance the vehicle through Ekho's in-house financing system. We've automated the process to make it as seamless as possible for the buyer and leverage different lender partners based on the `vehicleType` of the vehicle in question.
+#### Buyer Packet
 
-### [Coming Soon] Other Financing
+The packet of documents required to title and register a buyer's vehicle for an automated T&R order. The contents of the packet will vary based on the registration state's requirements. In a majority of cases, this packet will need to be downloaded by the buyer, wet-signed, and shipped back to Ekho using our pre-paid shipping label.
 
-The buyer has chosen to finance the vehicle through a third-party lender. This could be a bank, credit union, or other financial institution.
+#### Manufacturer's Statement of Origin (MSO)
 
-### Checkout Full Payment
+The MSO is a document required to title and register the vehicle. This can either be mailed to us by the OEM or Ekho can generate it with all the correct information.
 
-The buyer has chosen to pay in full at checkout (via card).
+#### Purchase Agreement
 
-### Cash
+The binding contract for non-financed orders. Once signed, the buyer is no longer eligible for a cancelation or refund. This is signed immediately after placing an order in ["Ekho Checkout"](/essentials/ekho-glossary#ekho-checkout).
+
+#### Temporary Tag
+
+Ekho will provide temporary tags to all buyers at cost. They are issued and valid for up to 90 days, allowing the buyer to enjoy their vehicle right away while they wait for their final metal tags. These will be issued to the buyer near their delivery date via email.
+
+# Payment Selection
+
+#### Cash
 
 The buyer has chosen to pay the balance of their order in cash closer to the delivery date. It also means that the buyer paid a reservation fee at checkout.
 
-### Cash Early
+#### Cash Early
 
-The buyer has selected to pay the balance of their order in cash after checkout, but in the financing (i.e. the first) section in the Buyer Portal. This either means the buyer paid a reservation fee at Checkout, or that they were rejected for financing and chose to pay in cash instead (this rarely happens).
+The buyer has selected to pay the balance of their order in cash after checkout, but in the financing (i.e. the first) section in the Buyer Portal. This either means that the buyer has paid a reservation fee at Checkout, or that they were rejected for financing and chose to pay in cash instead (this rarely happens).
 
-## Payment Status
+#### Checkout Full Payment
 
-This property is used to describe the current state of payment for a particular vehicle order. It changes over time as we receive payments from the buyer. This can be one of the following values:
+The buyer has chosen to pay in full at checkout (via card).
 
-### No Payments
+#### Native Financing
 
-No payments have been received for the vehicle order. Payment status is initially set to this value when the buyer selects financing at Checkout.
+The buyer has chosen to finance the vehicle through Ekho's in-house financing system. We've automated the process to make it as seamless as possible for the buyer and leverage different lender partners based on the `vehicleType` of the vehicle in question.
 
-### Down Payment Paid
+#### [Coming Soon] Other Financing
+
+The buyer has chosen to finance the vehicle through a third-party lender. This could be a bank, credit union, or other financial institution.
+
+# Payment Status
+
+#### Down Payment Paid
 
 The buyer has paid the down payment for the vehicle order. This is the first payment received for a financed order.
 
-### Reservation Paid
+#### Financing Guaranteed
+
+The financing lender is transferring the financed funds to Ekho. The funds will be transferred to the OEM within a couple business days.
+
+#### Fully Paid
+
+The order is fully paid. This can occur through [Checkout Full Payment](/essentials/ekho-glossary#checkout-full-payment), remaining balance paid in cases of [Cash](/essentials/ekho-glossary#cash) or [Cash Early](/essentials/ekho-glossary#cash-early), or the financed amount was received by the lender.
+
+#### No Payments
+
+No payments have been received for the vehicle order. Payment status is initially set to this value when the buyer selects financing at Checkout. No Payments can also be applicable for financed orders that were approved for $0 down payment.
+
+#### Reservation Paid
 
 The buyer has paid the reservation fee at Checkout. This is the first payment received for a cash order.
 
-### Financing Guaranteed
+# Preorders
 
-### Fully Paid
+#### Ekho Preorder
 
-## Features
+The buyer places a preorder through Ekho's preorder UI showcased below. Note, this is a separate transaction to the order placed through ["Ekho Checkout"](/essentials/ekho-glossary#ekho-checkout) at a later time.
 
-### Analytics
+<Frame caption='The UI when placing an Ekho Preorder.'>
+	<img src='../images/productUI/preOrderUI.png' />
+</Frame>
 
-### Reports
+#### Preorder Deposit
 
-### Custom Purchase Links
+The amount required for a buyer to secure a preorder. This fully refundable amount is configurable by the OEM and can be the full amount (exclusive of applicable taxes, fees, and delivery), a reservation amount, or both.
 
-### Abandoned Carts
+#### Preorder Lead Time
 
-### Discount Campaigns
+The text showcased on the top right indicating the estimated delivery date for the preorder placed. This copy is configurable by the OEM to a specific date or time window (i.e. December 1st, 2024, Spring 2025, etc.).
+
+# Registration and Titling Options
+
+<Frame caption='The UI of selecting the registration option(s) at Ekho Checkout.'>
+	<div style={{ display: 'flex', gap: '20px' }}>
+		<img
+			src='../images/productUI/naTarOption.png'
+			style={{ height: '300px', objectFit: 'contain' }}
+		/>
+		<img
+			src='../images/productUI/automatedTarOption.png'
+			style={{ height: '300px', objectFit: 'contain' }}
+		/>
+		<img
+			src='../images/productUI/assistedTarOption.png'
+			style={{ height: '300px', objectFit: 'contain' }}
+		/>
+	</div>
+</Frame>
+
+#### Assisted
+
+Ekho will assist the buyer with titling and registration by providing mailing the necessary documents on Ekho's end. It will be the responsibility of the buyer to pay necessary sales tax and registration fees when visiting the DMV.
+
+#### Automated
+
+Ekho will handle the titling and registration for the buyer, in addition to collecting the necessary sales tax and registration fees. No trips to the DMV will be required for the buyer. If an order is financing, this will be the only option available.
+
+#### Not Necessary
+
+Based on the vehicle type and state requirements, titling and registration is not required. If this is applicable, no other options will surface.

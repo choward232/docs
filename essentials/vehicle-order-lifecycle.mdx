@@ -22,9 +22,9 @@ icon: 'clipboard-list'
 
 <CardGroup cols={2}>
 	<Card
-		title='[Coming Soon] Ekho Glossary'
+		title='Ekho Glossary'
 		icon='book-sparkles'
-		href='/essentials/vehicle-order-lifecycle'
+		href='/essentials/ekho-glossary'
 	>
 		Overviews terminology that is oftentimes referenced in this document,
 		especially values of specific columns in a given table view in the Admin
@@ -43,8 +43,9 @@ icon: 'clipboard-list'
 ## Preorders
 
 <Info>
-	Collecting preorders will not be relevant for all OEMs. Please disregard
-	this section if you are not interested in collecting preorders with Ekho.
+	Collecting [Ekho Preorders](/essentials/ekho-glossary#ekho-preorder) will
+	not be relevant for all OEMs. Please disregard this section if you are not
+	interested in collecting preorders with Ekho.
 </Info>
 
 <Frame caption='Screenshot of the "Preorders" tab and its action buttons.'>
@@ -53,18 +54,18 @@ icon: 'clipboard-list'
 
 ### Action Buttons
 
-| Button Name       | Enabled                                                                                                 | Description                                                                                                                    | Communications to Buyer                                                      |
-| :---------------- | :------------------------------------------------------------------------------------------------------ | :----------------------------------------------------------------------------------------------------------------------------- | :--------------------------------------------------------------------------- |
-| Convert Preorder  | Available as a one time action                                                                          | Invites the buyer back to convert the preorder by completing checkout                                                          | Email and SMS sent to the buyer with their unique checkout link provided     |
-| Preview Cart      | Available when conversion invitation has been sent out, but not yet converted (i.e. completed checkout) | Opens a pop up to either copy the shareable checkout link for the buyer or view a preview link that does not impact analytics  | N/A - but can be used to copy a shareable link to send to the buyer          |
-| Cancel and Refund | Available as long as the preorder has not converted (i.e. buyer did not complete checkout)              | Cancels the preorder, initiates a refund to the buyer's original payment method, and reverses the funds transferred to the OEM | Email sent to the buyer confirming the full refund of their preorder deposit |
+| Button Name       | Enabled                                                                                                                                | Description                                                                                                                    | Communications to Buyer                                                                                                    |
+| :---------------- | :------------------------------------------------------------------------------------------------------------------------------------- | :----------------------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------- |
+| Convert Preorder  | Available as a one time action as long as the buyer has not yet completed [Ekho Checkout](/essentials/ekho-glossary#ekho-checkout)     | Invites the buyer back to convert the preorder by completing [Ekho Checkout](/essentials/ekho-glossary#ekho-checkout)          | Email and SMS sent to the buyer with their unique checkout link provided                                                   |
+| Preview Cart      | Available when conversion invitation has been sent out, but not yet completed [Ekho Checkout](/essentials/ekho-glossary#ekho-checkout) | Opens a pop up to either copy the shareable checkout link for the buyer or view a preview link that does not impact analytics  | N/A - but can be used to copy a shareable link to send to the buyer                                                        |
+| Cancel and Refund | Available as long as the preorder has not yet completed [Ekho Checkout](/essentials/ekho-glossary#ekho-checkout)                       | Cancels the preorder, initiates a refund to the buyer's original payment method, and reverses the funds transferred to the OEM | Email sent to the buyer confirming the full refund of their [Preorder Deposit](/essentials/ekho-glossary#preorder-deposit) |
 
 ### Preorder Steps
 
 <Steps>
 	<Step title='Buyer Places a Preorder'>
-		A buyer will appear in the "Preorders" tab once they complete their
-		preorder through Ekho.
+		A buyer will appear in the "Preorders" tab once they place their [Ekho
+		Preorder](/essentials/ekho-glossary#ekho-preorder).
 		<br /> **-- Preorder status:** Awaiting Conversion
 		<br /> **-- Available buttons:** Convert Preorder, Cancel and Refund
 	</Step>
@@ -72,8 +73,8 @@ icon: 'clipboard-list'
 		When you are ready to convert a preorder click the "Convert Preorder"
 		button to notify the buyer. This button should be clicked when the OEM
 		is ready to shortly begin production of the preorder and would like to
-		invite the buyer to complete their full checkout to convert into a
-		guaranteed sale. See [Ekho
+		invite the buyer to complete their [Ekho
+		Checkout](/essentials/ekho-glossary#ekho-checkout). See [Ekho
 		Communications](/essentials/ekho-communications#preorder-conversion) for
 		email copy.
 		<br /> **-- Preorder status:** Awaiting Conversion
@@ -82,11 +83,14 @@ icon: 'clipboard-list'
 	</Step>
 	<Step title='Buyer Completes Checkout'>
 		A buyer completes checkout using their unique link provided in email and
-		SMS when the OEM clicks "Convert Preorder". At checkout they can select
-		to either pay in full or apply for financing. It's important to note
-		that conversion of a preorder does not mean the sale is guaranteed. The
-		preorder is ready for OEM action only when the buyer completes all the
-		steps to get their order into the ["Awaiting OEM
+		SMS when the OEM clicks "Convert Preorder". At [Ekho
+		Checkout](/essentials/ekho-glossary#ekho-checkout) they can select to
+		either pay in full or apply for financing. Upon checkout completion it
+		will become a [Pending Order](/essentials/ekho-glossary#pending-order)
+		and eventually a [Converted
+		Order](/essentials/ekho-glossary#converted-order). The preorder is ready
+		for OEM action only when the buyer completes all the steps to get their
+		order into the ["Awaiting OEM
 		Action"](/essentials/vehicle-order-lifecycle#awaiting-oem-action) tab.
 		<br /> **-- Preorder status:** Converted
 		<br /> **-- Available buttons:** N/A as the order is no longer a
@@ -192,9 +196,11 @@ icon: 'clipboard-list'
 		consistently stay within a given range during pre-delivery testing.**
 	</Step>
 	<Step title='Send MSO'>
-		OEM will mark MSO as sent to Ekho. <br /> **We highly recommend OEMs
-		allow Ekho to generate the MSOs in-house to streamline operations. In
-		this case, the MSO will be marked as N/A.**
+		OEM will mark
+		[MSO](/essentials/ekho-glossary#manufacturers-statement-of-origin-mso)
+		as sent to Ekho. <br /> **We highly recommend OEMs allow Ekho to
+		generate the MSOs in-house to streamline operations. In this case, the
+		MSO will be marked as N/A.**
 	</Step>
 	<Step title='Set Motorcycle Engine Number (if applicable)'>
 		OEM will set the motorcycle engine number for each vehicle order. This
@@ -242,13 +248,14 @@ For all the cases below, Ekho has set up automated re-engagements via email and 
 		requirements.
 	</Step>
 	<Step title='Awaiting Signatures on Final Financing Paperwork'>
-		Ekho is awaiting signatures from the buyer on their final financing
-		paperwork (which was made available after the OEM marked the order as
-		ready to be shipped).
+		Ekho is awaiting signatures from the buyer on their
+		[RIC](/essentials/ekho-glossary#retail-installment-contract-ric) (which
+		was made available after the OEM marked the order as ready to be
+		shipped).
 	</Step>
 	<Step title='Awaiting Signatures on Bill of Sale'>
-		Ekho is awaiting signatures on the Bill of Sale, which officially
-		consummates the sale, for non-financed orders.
+		Ekho is awaiting signatures on the [Bill of
+		Sale](/essentials/ekho-glossary#bill-of-sale).
 	</Step>
 </Steps>
 
