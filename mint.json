@@ -46,7 +46,10 @@
 		},
 		{
 			"group": "Essentials",
-			"pages": ["essentials/ekho-communications"]
+			"pages": [
+				"essentials/ekho-communications",
+				"essentials/vehicle-order-lifecycle"
+			]
 		},
 		{
 			"group": "API Reference",
