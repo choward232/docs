@@ -5,7 +5,7 @@ icon: 'clipboard-list'
 ---
 
 <Tip>
-	This guide will closely follow the buckets indicated in the Admin Portal. As
+	This guide will closely follow the buckets indicated in the [Admin Portal](/essentials/ekho-glossary#admin-portal). As
 	you review, please reference the Admin Portal to visualize how an order goes
 	from one stage to the next.
 
@@ -44,7 +44,7 @@ icon: 'clipboard-list'
 
 ### Summary
 
-[Ekho Preorders](/essentials/ekho-glossary#preorders) enable OEMs to collect preorder deposits for a new model launch, enterance into a new market, etc. These deposits will be fully refundable and allows the OEM to properly time the conversion of preorders based upon production and distribution timelines.
+[Ekho Preorders](/essentials/ekho-glossary#preorders) enable OEMs to collect preorder deposits for a new model launch, entrance into a new market, etc. These deposits will be fully refundable and allows the OEM to properly time the conversion of preorders based upon production and distribution timelines.
 
 <Info>
 	Collecting [Ekho Preorders](/essentials/ekho-glossary#ekho-preorder) will
@@ -56,15 +56,9 @@ icon: 'clipboard-list'
 	<img src='../images/adminPortal/preOrderTab.png' />
 </Frame>
 
-### Action Buttons
-
-| Button Name       | Enabled                                                                                                                                | Description                                                                                                                    | Communications to Buyer                                                                                                    |
-| :---------------- | :------------------------------------------------------------------------------------------------------------------------------------- | :----------------------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------- |
-| Convert Preorder  | Available as a one time action as long as the buyer has not yet completed [Ekho Checkout](/essentials/ekho-glossary#ekho-checkout)     | Invites the buyer back to convert the preorder by completing [Ekho Checkout](/essentials/ekho-glossary#ekho-checkout)          | Email and SMS sent to the buyer with their unique checkout link provided                                                   |
-| Preview Cart      | Available when conversion invitation has been sent out, but not yet completed [Ekho Checkout](/essentials/ekho-glossary#ekho-checkout) | Opens a pop up to either copy the shareable checkout link for the buyer or view a preview link that does not impact analytics  | N/A - but can be used to copy a shareable link to send to the buyer                                                        |
-| Cancel and Refund | Available as long as the preorder has not yet completed [Ekho Checkout](/essentials/ekho-glossary#ekho-checkout)                       | Cancels the preorder, initiates a refund to the buyer's original payment method, and reverses the funds transferred to the OEM | Email sent to the buyer confirming the full refund of their [Preorder Deposit](/essentials/ekho-glossary#preorder-deposit) |
-
 ### Preorder Steps
+
+The steps taken by the buyer and OEM during the preorder phase of an order.
 
 <Steps>
 	<Step title='Buyer Places a Preorder'>
@@ -115,6 +109,27 @@ icon: 'clipboard-list'
 	check if their cancellation request abides by our cancellation policy.
 </Info>
 
+### Action Buttons
+
+The buttons available in the [Admin Portal](/essentials/ekho-glossary#admin-portal) to process and convert preorders.
+
+| Button Name       | Enabled                                                                                                                                | Description                                                                                                                    | Communications to Buyer                                                                                                    |
+| :---------------- | :------------------------------------------------------------------------------------------------------------------------------------- | :----------------------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------- |
+| Convert Preorder  | Available as a one time action as long as the buyer has not yet completed [Ekho Checkout](/essentials/ekho-glossary#ekho-checkout)     | Invites the buyer back to convert the preorder by completing [Ekho Checkout](/essentials/ekho-glossary#ekho-checkout)          | Email and SMS sent to the buyer with their unique checkout link provided                                                   |
+| Preview Cart      | Available when conversion invitation has been sent out, but not yet completed [Ekho Checkout](/essentials/ekho-glossary#ekho-checkout) | Opens a pop up to either copy the shareable checkout link for the buyer or view a preview link that does not impact analytics  | N/A - but can be used to copy a shareable link to send to the buyer                                                        |
+| Cancel and Refund | Available as long as the preorder has not yet completed [Ekho Checkout](/essentials/ekho-glossary#ekho-checkout)                       | Cancels the preorder, initiates a refund to the buyer's original payment method, and reverses the funds transferred to the OEM | Email sent to the buyer confirming the full refund of their [Preorder Deposit](/essentials/ekho-glossary#preorder-deposit) |
+
+### Statuses
+
+The statuses showcased in the Preorder table and their semantic meanings.
+
+**Preorder Status**
+| Status | Description |
+| :-------------- | :------------------------- |
+| Awaiting Conversion | Awaiting either the OEM to click the "Convert Preorder" Action Button or the buyer to place their order through [Ekho Checkout](/essentials/ekho-glossary#ekho-checkout) |
+| Canceled / Refunded | The preorder has been canceled and refunded by the OEM |
+| Converted | The buyer has placed their order through [Ekho Checkout](/essentials/ekho-glossary#ekho-checkout) |
+
 # Pending Orders
 
 ### Summary
@@ -126,6 +141,8 @@ icon: 'clipboard-list'
 </Frame>
 
 ### Pending Order Steps
+
+The steps taken by the buyer during the pending phase of an order to convert their order.
 
 <Tabs>
 	<Tab title='Financing Orders'>
@@ -196,6 +213,63 @@ icon: 'clipboard-list'
 		</Steps>
 	</Tab>
 </Tabs>
+
+### Statuses
+
+The statuses showcased in the Pending table and their semantic meanings.
+
+**Reason Why Pending**
+| Status | Description |
+| :-------------- | :------------------------- |
+| Pending Payment Guarantee | Awaiting payment confirmation either through a down payment, reservation, or full payment |
+| Pending Verification | Awaiting completion of identity verification |
+| Pending Sign Off | Awaiting confirmation and sign off on their selected configuration |
+
+**Payment Selection**
+| Status | Description |
+| :-------------- | :------------------------- |
+| Native Financing | Buyer selected to finance through Ekho |
+| Checkout Full Payment | Buyer paid in full at Ekho Checkout |
+| Cash Early | Buyer selected to pay the full balance now (usually occurs when the buyer indicates paying the balance in full after financing rejection) |
+| Cash | Buyer selected to pay the full balance closer to delivery (this is only possible for buyers who paid a reservation at Ekho Checkout) |
+
+**Vehicle Payment Status**
+| Status | Description |
+| :-------------- | :------------------------- |
+| No Payments | No payments have been made for the order |
+| Down Payment Paid | Down payment has been paid for the financed order|
+| Fully Paid | Full balance paid for the order |
+
+**Buyer Submitted Financing App**
+| Status | Description |
+| :-------------- | :------------------------- |
+| Yes | Buyer has submitted their financing application either at Ekho Checkout or in their [Buyer Portal](/essentials/ekho-glossary#buyer-portal) |
+| No | Buyer has not submitted their financing application yet |
+| N/A | Not applicable for this order (i.e. not financing) |
+
+**Stips Pending Evidence:**
+A list of stipulations from the lender requiring the buyer to upload or write evidence for.
+
+**Stips Pending Validation:**
+A list of stipulations the buyer has provided evidence for and awaiting confirmation from the lender that the information provided clears the stipulations.
+
+**Lender's Decision**
+| Status | Description |
+| :-------------- | :------------------------- |
+| Awaiting App Submission | Buyer has not submitted their financing application yet |
+| Not Yet Received| Lender is still processing their financing application |
+| Accepted | Lender has accepted their financing application |
+| Counter Offer | Lender has counter offered the application with their best offer (i.e. likely more down payment required than initially desired by the buyer) |
+| N/A | Not applicable for this order (i.e. not financing) |
+
+**Buyer's Decision on Financing Offer**
+| Status | Description |
+| :-------------- | :------------------------- |
+| Awaiting Lender Decision | Decision is pending app submission and/or lender providing a decision |
+| Awaiting Buyer Decision | The buyer has not yet made a decision on their offer |
+| Accepted | The buyer has accepted the lender's offer |
+| Declined | The buyer has declined the lender's offer |
+| N/A | Not applicable for this order (i.e. not financing) |
 
 # Awaiting OEM Action
 
