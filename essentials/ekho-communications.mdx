@@ -1,6 +1,6 @@
 ---
 title: 'Ekho Communications'
-description: 'This page provides an overview of the communications sent from Ekho to the buyer and OEM. Please feel free to request copy changes as necessary. Ekho will review the requested changes internally to determine if they can be accommodated.'
+description: 'This page provides an overview of the automated communications sent from Ekho to the buyer and OEM. To date, Ekho will send automated messages through email and SMS. Please feel free to request copy changes as necessary. Ekho will review the requested changes internally to determine if they can be accommodated.'
 icon: 'envelope-open-text'
 ---
 
@@ -13,7 +13,7 @@ icon: 'envelope-open-text'
 
 ### Preorder Confirmation
 
--   **Context:** Email sent when a buyer places a preorder on Ekho.
+-   **Context:** Sent when a buyer places a preorder on Ekho.
     <div
     	style={{
     		display: 'flex',
@@ -22,6 +22,11 @@ icon: 'envelope-open-text'
     		gap: '20px',
     	}}
     >
+    	<img
+    		src='../emailScreenshots/preOrderConfirmationSMS.jpg'
+    		alt='Pre Order Confirmation'
+    		style={{ height: '200px' }}
+    	/>
     	<img
     		src='../emailScreenshots/preOrderConfirmation.png'
     		alt='Pre Order Confirmation'
@@ -34,12 +39,12 @@ icon: 'envelope-open-text'
     	/>
     </div>
     <p style={{ textAlign: 'center' }}>
-    	Images from left to right: email to buyer, email to OEM.
+    	Images from left to right: SMS to buyer, email to buyer, email to OEM.
     </p>
 
 ### Preorder Refund
 
--   **Context:** Email sent when an OEM refunds a preorder.
+-   **Context:** Sent when an OEM refunds a preorder.
 -   **Trigger:** OEM clicks 'Cancel and Refund' in the Admin Portal.
 
 <div
@@ -77,7 +82,7 @@ icon: 'envelope-open-text'
 
 ### Preorder Conversion
 
--   **Context:** Email sent to a buyer when converting a preorder.
+-   **Context:** Sent to a buyer when converting a preorder.
 -   **Trigger:** OEM clicks 'Convert Preorder' in the Admin Portal.
 
 <div
@@ -88,6 +93,16 @@ icon: 'envelope-open-text'
 		gap: '20px',
 	}}
 >
+	<img
+		src='../emailScreenshots/preOrderConversionSMS.jpg'
+		alt='Pre Order Conversion'
+		style={{
+			maxWidth: '100%',
+			height: 'auto',
+			display: 'block',
+			margin: '0 auto',
+		}}
+	/>
 	<img
 		src='../emailScreenshots/preOrderConversion.png'
 		alt='Pre Order Conversion'
@@ -110,7 +125,8 @@ icon: 'envelope-open-text'
 	/>
 </div>
 <p style={{ textAlign: 'center' }}>
-	Images from left to right: email to buyer, trigger in Admin Portal.
+	Images from left to right: SMS to buyer, email to buyer, trigger in Admin
+	Portal.
 </p>
 
 ## Payments
@@ -179,7 +195,7 @@ icon: 'envelope-open-text'
 
 ### ACH Payment Failed
 
--   **Context:** Email sent to the buyer when their ACH transfer for a down payment or remaining balance fails.
+-   **Context:** Sent to the buyer when their ACH transfer for a down payment or remaining balance fails.
     <div
     	style={{
     		display: 'flex',
@@ -188,6 +204,16 @@ icon: 'envelope-open-text'
     		gap: '20px',
     	}}
     >
+    	<img
+    		src='../emailScreenshots/achFailedSMS.jpg'
+    		alt='Pre Order Conversion'
+    		style={{
+    			maxWidth: '75%',
+    			height: 'auto',
+    			display: 'block',
+    			margin: '0 auto',
+    		}}
+    	/>
     	<img
     		src='../emailScreenshots/achFailed.png'
     		alt='Pre Order Conversion'
@@ -289,22 +315,30 @@ icon: 'envelope-open-text'
 
 ### Checkout Confirmation
 
--   **Context:** Email sent to the buyer confirming their placed order.
+-   **Context:** Sent to the buyer confirming their placed order.
 
-    <div
-    	style={{
-    		display: 'flex',
-    		justifyContent: 'center',
-    		alignItems: 'center',
-    		gap: '20px',
-    	}}
-    >
-    	<img
-    		src='../emailScreenshots/checkoutConfirmation.png'
-    		alt='Pre Order Conversion'
-    		style={{ height: '400px' }}
-    	/>
-    </div>
+        <div
+        	style={{
+        		display: 'flex',
+        		justifyContent: 'center',
+        		alignItems: 'center',
+        		gap: '20px',
+        	}}
+        >
+        	<img
+        		src='../emailScreenshots/orderConfirmationSMS.jpg'
+        		alt='Pre Order Conversion'
+        		style={{ height: '200px' }}
+        	/>
+        	<img
+        		src='../emailScreenshots/checkoutConfirmation.png'
+        		alt='Pre Order Conversion'
+        		style={{ height: '400px' }}
+        	/>
+        </div>
+        <p style={{ textAlign: 'center' }}>
+        Images from left to right: SMS sent to buyer, email sent to buyer
+        </p>
 
 ## Financing
 
@@ -312,25 +346,42 @@ icon: 'envelope-open-text'
 
 -   **Context:** Buyer receives a financing decision from the lender (either declined or approval with no stipulations).
 
-    <div
-    	style={{
-    		display: 'flex',
-    		justifyContent: 'center',
-    		alignItems: 'center',
-    		gap: '20px',
-    	}}
-    >
-    	<img
-    		src='../emailScreenshots/lenderDecision.png'
-    		alt='Pre Order Conversion'
-    		style={{
-    			maxWidth: '75%',
-    			height: 'auto',
-    			display: 'block',
-    			margin: '0 auto',
-    		}}
-    	/>
-    </div>
+            <div
+            style={{
+            	display: 'flex',
+            	justifyContent: 'center',
+            	alignItems: 'center',
+            	gap: '20px',
+            }}
+
+        >
+
+            <img
+            	src='../emailScreenshots/financingDecisionSMS.jpg'
+            	alt='Pre Order Conversion'
+            	style={{
+            		maxWidth: '75%',
+            		height: 'auto',
+            		display: 'block',
+            		margin: '0 auto',
+            	}}
+            />
+            <img
+            	src='../emailScreenshots/lenderDecision.png'
+            	alt='Pre Order Conversion'
+            	style={{
+            		maxWidth: '75%',
+            		height: 'auto',
+            		display: 'block',
+            		margin: '0 auto',
+            	}}
+            />
+
+        </div>
+
+    <p style={{ textAlign: 'center' }}>
+    	Images from left to right: SMS sent to buyer, email sent to buyer
+    </p>
 
 ### Conditional Offer Received
 
@@ -345,6 +396,16 @@ icon: 'envelope-open-text'
     	}}
     >
     	<img
+    		src='../emailScreenshots/conditionalOfferSMS.jpg'
+    		alt='Pre Order Conversion'
+    		style={{
+    			maxWidth: '75%',
+    			height: 'auto',
+    			display: 'block',
+    			margin: '0 auto',
+    		}}
+    	/>
+    	<img
     		src='../emailScreenshots/conditionalOffer.png'
     		alt='Pre Order Conversion'
     		style={{
@@ -355,6 +416,9 @@ icon: 'envelope-open-text'
     		}}
     	/>
     </div>
+    <p style={{ textAlign: 'center' }}>
+    	Images from left to right: SMS sent to buyer, email sent to buyer
+    </p>
 
 ### Stipulations Re-requested
 
@@ -393,6 +457,16 @@ icon: 'envelope-open-text'
     	}}
     >
     	<img
+    		src='../emailScreenshots/ricSignatureSMS.jpg'
+    		alt='Pre Order Conversion'
+    		style={{
+    			maxWidth: '75%',
+    			height: 'auto',
+    			display: 'block',
+    			margin: '0 auto',
+    		}}
+    	/>
+    	<img
     		src='../emailScreenshots/ricSignature.png'
     		alt='Pre Order Conversion'
     		style={{
@@ -403,6 +477,9 @@ icon: 'envelope-open-text'
     		}}
     	/>
     </div>
+    <p style={{ textAlign: 'center' }}>
+    	Images from left to right: SMS sent to buyer, email sent to buyer
+    </p>
 
 ## Titling & Registration
 
@@ -482,92 +559,206 @@ icon: 'envelope-open-text'
 
 Ekho has built an internal infrastructure to detect outstanding actions for a given order and automatically re-engage the buyer to continue making progress with their order.
 
--   **Interval:** The first re-engagement is sent 6 hours after the last buyer activity. Subsequent re-engagements are sent at increasing intervals: 24 hours after the first, 48 hours after the second, and 72 hours after the third re-engagement, assuming continuous inactivity.
-    {' '}
-    <div
-    	style={{
-    		display: 'flex',
-    		justifyContent: 'center',
-    		alignItems: 'center',
-    		gap: '20px',
-    	}}
-    >
-    	<img
-    		src='../emailScreenshots/submitApplicationAutomation.png'
-    		alt='Pre Order Conversion'
-    		style={{
-    			maxWidth: '75%',
-    			height: 'auto',
-    			display: 'block',
-    			margin: '0 auto',
-    		}}
-    	/>
-    	<img
-    		src='../emailScreenshots/provideStipsAutomation.png'
-    		alt='Pre Order Conversion'
-    		style={{
-    			maxWidth: '75%',
-    			height: 'auto',
-    			display: 'block',
-    			margin: '0 auto',
-    		}}
-    	/>
-    	<img
-    		src='../emailScreenshots/financingDecisionAutomation.png'
-    		alt='Pre Order Conversion'
-    		style={{
-    			maxWidth: '75%',
-    			height: 'auto',
-    			display: 'block',
-    			margin: '0 auto',
-    		}}
-    	/>
-    </div>
-    <p style={{ textAlign: 'center' }}>
-    	Images from left to right: reminder to submit financing application,
-    	provide stipulation information, and make a decision on the financing
-    	offer.
-    </p>
-    <div
-    	style={{
-    		display: 'flex',
-    		justifyContent: 'center',
-    		alignItems: 'center',
-    		gap: '20px',
-    	}}
-    >
-    	<img
-    		src='../emailScreenshots/completeIdentityAutomation.png'
-    		alt='Pre Order Conversion'
-    		style={{
-    			maxWidth: '75%',
-    			height: 'auto',
-    			display: 'block',
-    			margin: '0 auto',
-    		}}
-    	/>
-    	<img
-    		src='../emailScreenshots/signBOSAutomation.png'
-    		alt='Pre Order Conversion'
-    		style={{
-    			maxWidth: '75%',
-    			height: 'auto',
-    			display: 'block',
-    			margin: '0 auto',
-    		}}
-    	/>
-    	<img
-    		src='../emailScreenshots/completePaperworkAutomation.png'
-    		alt='Pre Order Conversion'
-    		style={{
-    			maxWidth: '75%',
-    			height: 'auto',
-    			display: 'block',
-    			margin: '0 auto',
-    		}}
-    	/>
-    </div>
-    <p style={{ textAlign: 'center' }}>
-    	Images from left to right: reminder to complete identity verification,
-    	sign the Bill of Sale, and ship titling paperwork.
-    </p>
+<Tip>
+	**Interval:** The first re-engagement is sent 6 hours after the last buyer
+	activity. Subsequent re-engagements are sent at increasing intervals: 24
+	hours after the first, 48 hours after the second, and 72 hours after the
+	third re-engagement, assuming continuous inactivity.
+</Tip>
+
+### Submit Financing Application
+
+<div
+	style={{
+		display: 'flex',
+		justifyContent: 'center',
+		alignItems: 'center',
+		gap: '20px',
+	}}
+>
+	<img
+		src='../emailScreenshots/submitAppSMS.jpg'
+		alt='Pre Order Conversion'
+		style={{
+			maxWidth: '75%',
+			height: 'auto',
+			display: 'block',
+			margin: '0 auto',
+		}}
+	/>
+	<img
+		src='../emailScreenshots/submitApplicationAutomation.png'
+		alt='Pre Order Conversion'
+		style={{
+			maxWidth: '75%',
+			height: 'auto',
+			display: 'block',
+			margin: '0 auto',
+		}}
+	/>
+</div>
+<p style={{ textAlign: 'center' }}>
+	Images from left to right: SMS sent to buyer, email sent to buyer
+</p>
+
+### Provide Stipulation Information
+
+<div
+	style={{
+		display: 'flex',
+		justifyContent: 'center',
+		alignItems: 'center',
+		gap: '20px',
+	}}
+>
+	<img
+		src='../emailScreenshots/stipsEvidenceSMS.jpg'
+		alt='Pre Order Conversion'
+		style={{
+			maxWidth: '75%',
+			height: 'auto',
+			display: 'block',
+			margin: '0 auto',
+		}}
+	/>
+	<img
+		src='../emailScreenshots/provideStipsAutomation.png'
+		alt='Pre Order Conversion'
+		style={{
+			maxWidth: '75%',
+			height: 'auto',
+			display: 'block',
+			margin: '0 auto',
+		}}
+	/>
+</div>
+<p style={{ textAlign: 'center' }}>
+	Images from left to right: SMS sent to buyer, email sent to buyer
+</p>
+
+### Review Financing Offer
+
+<div
+	style={{
+		display: 'flex',
+		justifyContent: 'center',
+		alignItems: 'center',
+		gap: '20px',
+	}}
+>
+	<img
+		src='../emailScreenshots/financingDecisionSMS.jpg'
+		alt='Pre Order Conversion'
+		style={{
+			maxWidth: '75%',
+			height: 'auto',
+			display: 'block',
+			margin: '0 auto',
+		}}
+	/>
+	<img
+		src='../emailScreenshots/financingDecisionAutomation.png'
+		alt='Pre Order Conversion'
+		style={{
+			maxWidth: '75%',
+			height: 'auto',
+			display: 'block',
+			margin: '0 auto',
+		}}
+	/>
+</div>
+<p style={{ textAlign: 'center' }}>
+	Images from left to right: SMS sent to buyer, email sent to buyer
+</p>
+
+### Complete Identity Verification
+
+<div
+	style={{
+		display: 'flex',
+		justifyContent: 'center',
+		alignItems: 'center',
+		gap: '20px',
+	}}
+>
+	<img
+		src='../emailScreenshots/identityVerificationSMS.jpg'
+		alt='Pre Order Conversion'
+		style={{
+			maxWidth: '75%',
+			height: 'auto',
+			display: 'block',
+			margin: '0 auto',
+		}}
+	/>
+	<img
+		src='../emailScreenshots/completeIdentityAutomation.png'
+		alt='Pre Order Conversion'
+		style={{
+			maxWidth: '75%',
+			height: 'auto',
+			display: 'block',
+			margin: '0 auto',
+		}}
+	/>
+</div>
+<p style={{ textAlign: 'center' }}>
+	Images from left to right: SMS sent to buyer, email sent to buyer
+</p>
+
+### Sign Bill of Sale
+
+<div
+	style={{
+		display: 'flex',
+		justifyContent: 'center',
+		alignItems: 'center',
+		gap: '20px',
+	}}
+>
+	<img
+		src='../emailScreenshots/signBosSMS.jpg'
+		alt='Pre Order Conversion'
+		style={{
+			maxWidth: '75%',
+			height: 'auto',
+			display: 'block',
+			margin: '0 auto',
+		}}
+	/>
+	<img
+		src='../emailScreenshots/signBOSAutomation.png'
+		alt='Pre Order Conversion'
+		style={{
+			maxWidth: '75%',
+			height: 'auto',
+			display: 'block',
+			margin: '0 auto',
+		}}
+	/>
+</div>
+<p style={{ textAlign: 'center' }}>
+	Images from left to right: SMS sent to buyer, email sent to buyer
+</p>
+
+### Ship Titling Paperwork
+
+<div
+	style={{
+		display: 'flex',
+		justifyContent: 'center',
+		alignItems: 'center',
+		gap: '20px',
+	}}
+>
+	<img
+		src='../emailScreenshots/completePaperworkAutomation.png'
+		alt='Pre Order Conversion'
+		style={{
+			maxWidth: '75%',
+			height: 'auto',
+			display: 'block',
+			margin: '0 auto',
+		}}
+	/>
+</div>
