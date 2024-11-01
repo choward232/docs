@@ -1,0 +1,33 @@
+---
+title: 'Third-party Analytics'
+description: 'This page provides an overview of how Ekho handles third-party analytics.'
+icon: 'chart-pie'
+---
+
+## How does Ekho handle third-party analytics?
+
+### Overview
+
+Ekho provides integrations with common third-party analytics platforms. Custom workflows can be built for more complex use cases.
+
+### Which third-party analytics platforms has Ekho integrated with?
+
+Ekho currently supports Google Analytics (which can be a GTM integration or a direct GA4 tag integration), Meta Pixel, and TikTok Pixel. Reach out to the team on Slack to discuss integrations with other platforms. Simultaneous integrations with all of these platforms are supported.
+
+### How can I add my third-party analytics tracking to my Ekho instance?
+
+Reach out to the team at Ekho with your GTM ID, GA4 tag ID, Meta Pixel ID, or TikTok Pixel ID and we will set things up for you.
+
+## Analytics Events In Ekho Checkout
+
+| Action                      | Notes                                                                                                                                                                 | GTM/GA4 Event Name                                            | Meta Pixel Event Name                        | TikTok Pixel Event Name |
+| :-------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------ | :------------------------------------------- | :---------------------- |
+| **View Checkout**           | Triggered when Ekho checkout page is viewed by buyer                                                                                                                  | `begin_checkout`                                              | `PageView`                                   | `Pageview`              |
+| **Press Checkout Button**   | Buyer presses the checkout button and initial validation succeeds. Checkout can still fail if payment fails or other issue occurs during the order/preorder creation. | `conversion_event_begin_checkout, payment_selection_<option>` | `begin_checkout, payment_selection_<option>` | `BeginCheckout`         |
+| **Checkout Succeeded**      | Triggered after buyer presses the checkout button and there were no errors. The order or preorder was created successfully.                                           | `conversion_event_purchase`                                   | `placeorder`                                 | `PlaceAnOrder`          |
+| **Payment Option Selected** | Triggered when buyer selects a payment option.                                                                                                                        | N/A                                                           | N/A                                          | `AddPaymentInfo`        |
+| **Discount Added**          | Triggered when the buyer attempts to add a discount to their order.                                                                                                   | N/A                                                           | N/A                                          | `SubmitForm`            |
+
+## Analytics Events In Ekho Buyer Portal
+
+Ekho does not support direct integrations with third-party analytics in the buyer portal. However, custom workflows can be built using Ekhoʼs Zapier integration to ensure events downstream from checkout are sent to analytics platforms.

@@ -49,16 +49,45 @@
 			"pages": [
 				"essentials/ekho-glossary",
 				"essentials/vehicle-order-lifecycle",
-				"essentials/ekho-communications"
+				"essentials/ekho-communications",
+				"essentials/third-party-analytics"
 			]
 		},
 		{
 			"group": "API Reference",
 			"pages": [
-				"api-reference/create-a-checkout-cart",
-				"api-reference/assign-vin-to-a-vehicle",
-				"api-reference/fetch-oem-bearer-token",
-				"api-reference/add-a-new-pickup-location"
+				{
+					"group": "Checkout Carts",
+					"pages": ["api-reference/create-a-checkout-cart"]
+				},
+				{
+					"group": "Purchased Vehicles",
+					"pages": [
+						"api-reference/assign-vin-to-a-vehicle",
+						"api-reference/assign-motorcycle-engine-number-to-a-vehicle",
+						"api-reference/assign-odometer-reading-to-a-vehicle",
+						"api-reference/update-fulfillment-status-of-a-vehicle"
+					]
+				},
+				{
+					"group": "Retrieve Order Details",
+					"pages": [
+						"api-reference/retrieve-details-of-a-preorder",
+						"api-reference/retrieve-details-of-a-purchased-vehicle",
+						"api-reference/retrieve-details-of-a-purchased-accessory"
+					]
+				},
+				{
+					"group": "Tokens",
+					"pages": ["api-reference/fetch-oem-bearer-token"]
+				},
+				{
+					"group": "Webhooks",
+					"pages": [
+						"api-reference/delete-existing-subscription-to-a-webhook-event",
+						"api-reference/subscribe-to-a-webhook-event"
+					]
+				}
 			]
 		}
 	],
