@@ -61,6 +61,10 @@
 					"pages": ["api-reference/create-a-checkout-cart"]
 				},
 				{
+					"group": "Pickup Locations",
+					"pages": ["api-reference/add-a-new-pickup-location"]
+				},
+				{
 					"group": "Purchased Vehicles",
 					"pages": [
 						"api-reference/assign-vin-to-a-vehicle",
