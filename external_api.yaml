@@ -1083,9 +1083,10 @@ components:
                     description: Optional. If you would like for us to overwrite an existing checkoutCart with the same id, provide the id here. If you don't provide this, we will create a new checkoutCart with a new id
                 orderCreationType:
                     type: string
-                    description: Determines the type of order being created. If not provided, we will default to "ORGANIC". PREORDER -> cart created for preorder, EXISTINGORDER -> cart created for an existing order, OEMORIGINATED -> cart created by OEM sales rep, ORGANIC -> cart created by buyer on OEM website
+                    description: Determines the type of order being created. If not provided, we will default to "ORGANIC". ANTE_PREORDER -> cart for a preorder, PREORDER -> cart created from a preorder, EXISTINGORDER -> cart created for an existing order, OEMORIGINATED -> cart created by OEM sales rep, ORGANIC -> cart created by buyer on OEM website
                     enum:
                         - ORGANIC
+                        - ANTE_PREORDER
                         - PREORDER
                         - EXISTINGORDER
                         - OEMORIGINATED
