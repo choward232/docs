@@ -48,9 +48,11 @@
 			"group": "Essentials",
 			"pages": [
 				"essentials/ekho-glossary",
-				"essentials/vehicle-order-lifecycle",
 				"essentials/ekho-communications",
-				"essentials/third-party-analytics"
+				"essentials/flow-of-funds",
+				"essentials/third-party-analytics",
+				"essentials/vehicle-order-lifecycle",
+				"essentials/zapier-integration"
 			]
 		},
 		{
