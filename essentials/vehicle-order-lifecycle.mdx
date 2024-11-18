@@ -38,6 +38,17 @@ icon: 'clipboard-list'
 		Overviews email copy that is oftentimes triggered upon completion of
 		certain steps Ekho, the OEM, or the buyer completes.
 	</Card>
+	<Card
+		title='Flow of Funds'
+		icon='money-bill-transfer'
+		href='/essentials/flow-of-funds'
+	>
+		Overviews when and how partners will be distributed funds for an order.
+	</Card>
+	<Card title='Zapier Integration' icon='bolt' href='/essentials/bolt'>
+		Overviews our integration with Zapier to pass Ekho data back to your
+		SaaS tools.
+	</Card>
 </CardGroup>
 
 # Preorders
@@ -137,7 +148,7 @@ The statuses showcased in the Preorder table and their semantic meanings.
 [Pending Orders](/essentials/ekho-glossary#pending-order) will be the first step when an order is placed through [Ekho Checkout](/essentials/ekho-glossary#ekho-checkout). These are orders that will still require the steps detailed below to become a [Converted Order](/essentials/ekho-glossary#converted-order).
 
 <Frame caption='Screenshot of the "Pending" tab and its metadata.'>
-	<img src='../images/adminPortal/pendingTab.png' />
+	<img src='../images/adminPortal/pendingTabNov15.png' />
 </Frame>
 
 ### Pending Order Steps
@@ -286,7 +297,7 @@ Orders in "Awaiting OEM Action" are ready to begin processing by the OEM. These 
 </Info>
 
 <Frame caption='Screenshot of the "Awaiting OEM Action" tab and its action buttons.'>
-	<img src='../images/adminPortal/awaitingOEMActionTab.png' />
+	<img src='../images/adminPortal/awaitingOEMActionTabNov15.png' />
 </Frame>
 
 ### Awaiting OEM Action Steps
@@ -339,7 +350,7 @@ Orders in "Awaiting Buyer & Ekho Action" indicates there are certain actions nec
 </Info>
 
 <Frame caption='Screenshot of the "Awaiting Buyer & Ekho Action" tab and its metadata.'>
-	<img src='../images/adminPortal/awaitingBuyerEkhoActionTab.png' />
+	<img src='../images/adminPortal/awaitingBuyerEkhoActionTabNov15.png' />
 </Frame>
 
 ### Reasons Why an Order Can Be in "Awaiting Buyer & Ekho Action"
@@ -348,25 +359,34 @@ For all the cases below, Ekho has set up automated re-engagements via email and 
 [Ekho Communications](/essentials/ekho-communications#automated-re-engagements) for email copy.
 
 <Steps>
-	<Step title='Awaiting Full Payment'>
+	<Step title='Awaiting Remaining Balance'>
+		Ekho is awaiting the remaining balance payment for a reservation order.
+	</Step>
+	<Step title='ACH Transfer Failed'>
+		A buyer's ACH transfer failed. Ekho will be working with this buyer to
+		ensure payment is made prior to fulfillment request.
+	</Step>
+	<Step title='Processing Payment'>
 		A non-financed order is still pending payment of the full balance. This
 		will oftentimes be due to an ACH transfer currently processing, which
 		usually takes 3-5 business days.
 	</Step>
-	<Step title='Awaiting Insurance Proof'>
+	<Step title='Awaiting Valid Insurance'>
 		Financed orders and certain states require proof of insurance. Ekho will
 		be sure to support buyers in securing a policy with the correct
 		requirements.
 	</Step>
-	<Step title='Awaiting Signatures on Final Financing Paperwork'>
-		Ekho is awaiting signatures from the buyer on their
+	<Step title='Awaiting Document Signatures'>
+		For financed orders, Ekho is awaiting signatures from the buyer on their
 		[RIC](/essentials/ekho-glossary#retail-installment-contract-ric) (which
 		was made available after the OEM marked the order as ready to be
-		shipped).
+		shipped). For non-financed orders, Ekho is awaiting signatures on the
+		[Bill of Sale](/essentials/ekho-glossary#bill-of-sale).
 	</Step>
-	<Step title='Awaiting Signatures on Bill of Sale'>
-		Ekho is awaiting signatures on the [Bill of
-		Sale](/essentials/ekho-glossary#bill-of-sale).
+	<Step title='Awaiting Ekho Processing'>
+		Ekho is completing final document processing required prior to
+		fulfillment. In a vast majority of cases, this will be documents to send
+		to the lender for a financed order.
 	</Step>
 </Steps>
 
@@ -377,7 +397,7 @@ For all the cases below, Ekho has set up automated re-engagements via email and 
 Orders in "Kick Off Fulfillment" are ready to begin shipment.
 
 <Frame caption='Screenshot of the "Kick Off Fulfillment" tab and its action buttons.'>
-	<img src='../images/adminPortal/kickOffFulfillmentTab.png' />
+	<img src='../images/adminPortal/kickOffFulfillmentTabNov15.png' />
 </Frame>
 
 <Info>
@@ -429,7 +449,7 @@ The steps taken by the OEM during the Kick Off Fulfillment phase of an order.
 Orders in "Fulfillment in Progress" are currently in transit. The OEM should be proactively updating estimated delivery dates so Ekho is aware of timelines to communicate with the buyer.
 
 <Frame caption='Screenshot of the "Fulfillment in Progress" tab and its action button.'>
-	<img src='../images/adminPortal/fulfillmentInProgressTab.png' />
+	<img src='../images/adminPortal/fulfillmentInProgressTabNov15.png' />
 </Frame>
 
 ### Fulfillment in Progress Steps
@@ -444,12 +464,12 @@ The steps taken by the OEM during the Fulfillment in Progress phase of an order.
 	<Step title='Complete!'>Order will move into the "Fulfilled" table.</Step>
 </Steps>
 
-# Fulfilled
+# Fulfilled & Inactive Orders
 
 ### Summary
 
-The "Fulfilled" table will showcase all the fulfilled orders.
+All Fulfilled, Canceled, and On Hold orders will surface in the Inactive Orders section.
 
-<Frame caption='Screenshot of the "Fulfilled" tab and its metadata.'>
-	<img src='../images/adminPortal/fulfilledTab.png' />
+<Frame caption='Screenshot of the Inactive Orders section.'>
+	<img src='../images/adminPortal/inactiveOrdersNov15.png' />
 </Frame>
