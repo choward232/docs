@@ -807,6 +807,9 @@ components:
                 # - orderCreationType (optional for backwards compatibility => default to ORGANIC if not set)
                 # - linkUseType (optional for backwards compatibility => default to "MULTI_USE" if not set)
                 # - customLinkConfig
+                # - preorderId
+                # - oemId (optional for backwards compatibility)
+                # - brandKey (optional for backwards compatibility)
             properties:
                 id:
                     type: string
@@ -817,6 +820,9 @@ components:
                 oemKey:
                     type: string
                     description: The oemKey of the OEM that this checkout cart belongs to
+                oemId:
+                    type: string
+                    description: The oemId of the OEM that this checkout cart belongs to (optional -- if not provided we will grab need to default to the main oemId)
                 nativeDefaultCheckoutUrl:
                     type: string
                     description: The OEMs native checkout page URL, which we will route the buyer to if a) the buyer doesn't have vehicles in their cart, or b) we don't support the state they want to register their vehicle in (if included)
@@ -909,6 +915,10 @@ components:
                             # - totalPrice
                             # - estimatedProductionTime
                             # - estimatedDeliveryTime
+                            # - vipOrderFee (only for ante_preorder vehicles)
+                            # - estimatedProductionDate
+                            # - preorderProdStart
+                            # - reqManulDeliveryUpdates
                         properties:
                             productId:
                                 type: string
@@ -927,9 +937,9 @@ components:
                                 description: The url of the image of the item. If we have our own (i.e. for a vehicle), we will provide our own.
                             specs:
                                 type: array
+                                description: An array of objects that hold information about each spec of the item
                                 items:
                                     type: object
-                                    description: An array of objects that hold information about each spec of the item
                                     required:
                                         - name
                                         - price
@@ -986,6 +996,7 @@ components:
                                 type: string
                                 description: The type of order of the vehicle
                                 enum:
+                                    - ante_preorder
                                     - preorder
                                     - buildToOrder
                                     - inventoryOrder
@@ -1010,6 +1021,9 @@ components:
                             orderFee:
                                 type: number
                                 description: Optional. The order fee of the vehicle - if not included, use orderFee from vehicle subcollection. Only relevant for vehicle items
+                            vipOrderFee:
+                                type: number
+                                description: The VIP order fee of the vehicle. Only relevant for ANTE_PREORDER vehicles
                             vin:
                                 type: string
                                 description: The vin of the vehicle that was purchased in this checkout cart
@@ -1017,14 +1031,24 @@ components:
                                 type: number
                                 description: The odometer reading of the vehicle that was purchased in this checkout cart
                             estimatedDeliveryDate:
-                                type: number
-                                description: The estimated delivery date of the vehicle that was purchased in this checkout cart
+                                description: The estimated delivery date of the vehicle that was purchased in this checkout cart. If it's an object, it's conditional delivery date based on selection at checkout
+                                oneOf:
+                                    - $ref: "#/components/schemas/CartDateConfig"
+                                    - type: number
+                            estimatedProductionDate:
+                                description: The estimated production date of the vehicle that was purchased in this checkout cart. If it's an object, it's conditional production date based on selection at checkout
+                                oneOf:
+                                    - $ref: "#/components/schemas/CartDateConfig"
+                                    - type: number
                             shippingFee:
                                 type: number
                                 description: Optional. The shipping fee of the vehicle - if not included, use shippingFee from vehicle subcollection. Only relevant for vehicle items
                             pickUpFee:
                                 type: number
                                 description: Optional. The pick up fee of the vehicle - if not included, default to 0. Only relevant for vehicle items
+                            preorderProdStart:
+                                type: string
+                                description: a readable string of when production for preorders begin for this vehicle. Only used for preorder vehicles. Not a date since this can be a wide range!
                             metadata:
                                 type: object
                                 description: Optional. This is only relevant for vehicles currently. This object stores misc data that will be passed along to the checkoutCart object (and subsequent purchased vehicle object). Note that existingPayments will not be passed along but rather consumed.
@@ -1067,7 +1091,9 @@ components:
                                             ],
                                         randomField: "randomValue",
                                     }
-
+                            reqManulDeliveryUpdates:
+                                type: boolean
+                                description: true if all delivery updates for this vehicle should be manually set. Optional for backwards compatibility. Default is false. Overrides value on OEM vehicle object. Should only exist on vehicle items
                 # Optional fields below
                 boltOnsAlreadyAssigned:
                     type: boolean
@@ -1091,6 +1117,7 @@ components:
                         - EXISTINGORDER
                         - OEMORIGINATED
                         - ABANDONEDCART
+                        - ANTE_PREORDER
                 source:
                     type: string
                     description: The source of the checkout cart. Useful for tacking purposes to know where the OEM is placing this link - and thus where buyers are coming from
@@ -1103,6 +1130,12 @@ components:
                         - MULTI_USE
                 customLinkConfig:
                     $ref: "#/components/schemas/CustomLinkConfig"
+                preorderId:
+                    type: string
+                    description: The id of the preorder. Only relevant for carts created from Ekho preorders
+                brandKey:
+                    type: string
+                    description: The brand key of the branded vehicle(s) that exist in this checkout cart
         # Not it's own object, but used in incomingCarts and CheckoutCarts objects
         CustomLinkConfig:
             type: object
@@ -2018,6 +2051,12 @@ components:
                 convertedCheckoutCartId:
                     type: string
                     description: The id of the checkout cart that this preorder was converted into.
+        CartDateConfig:
+            type: object
+            description: stores variable vehicle delivery dates or production dates (depending on use) based on checkout payment selection. Can expand to other options in the future. Keys are either 'cash', 'nativeFinancing', 'checkoutFullPayment'.
+            additionalProperties:
+                type: number
+                description: the UNIX timestamp of the delivery date
     securitySchemes:
         oemAdminAuth:
             type: http
