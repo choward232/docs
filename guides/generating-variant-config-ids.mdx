@@ -1,0 +1,36 @@
+---
+title: 'Generating VariantConfigIds'
+description: 'This page provides an overview of how to generate VariantConfigIds for a Vehicle configured on your website.'
+icon: 'palette'
+---
+
+## Context
+
+Ekho requires `variantConfigIds` for its `checkoutCart_oncreate_v2`
+endpoint. You must programmatically generate them based on the specific Vehicle configuration a Buyer has selected.
+Please follow the guide below to generate the correct `variantConfigId` and successfully call `checkoutCart_oncreate_v2`.
+
+### Required Items
+
+Ekho’s internal `productId` for the Vehicle model.
+
+## Steps
+
+1.  Collect all accessory names in the Vehicle’s configuration into an array.
+    E.g. `Red`, `Extra Storage`, etc. These names should align with the possible accessories specified in the Vehicle onboarding sheet you sent to Ekho.
+2.  Remove symbols & spaces from the accessory names and sort alphabetically.
+3.  Concatenate the names in the array using `'-'`. This is a `variantId`.
+4.  Concatenate the Vehicle’s `productId` with the `variantId` using `'-'`.
+    > Example: `ProductID-AccessoryA-AccessoryB-AccessoryC`
+5.  Use the final string as a `variantConfigId`, as specified in the below `checkoutCart_oncreate_v2` schema:
+    >
+        ```   {
+        'cancelUrl': 'www.yourwebsite.com',
+        'oemId': 'oem-id',
+        'oemKey': 'oem-key',
+        'variantConfigIds': ['exampleProductId-variantId'],
+        'cartVehicle':
+        	{
+        		'productId': 'exampleProductId'
+        	}
+    }```

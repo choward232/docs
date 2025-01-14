@@ -56,11 +56,18 @@
 			]
 		},
 		{
+			"group": "Guides",
+			"pages": ["guides/generating-variant-config-ids"]
+		},
+		{
 			"group": "API Reference",
 			"pages": [
 				{
 					"group": "Checkout Carts",
-					"pages": ["api-reference/create-a-checkout-cart"]
+					"pages": [
+						"api-reference/create-a-checkout-cart",
+						"api-reference/create-a-checkout-cart-legacy"
+					]
 				},
 				{
 					"group": "Pickup Locations",
