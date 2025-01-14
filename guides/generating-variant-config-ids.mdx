@@ -23,14 +23,18 @@ Ekho’s internal `productId` for the Vehicle model.
 4.  Concatenate the Vehicle’s `productId` with the `variantId` using `'-'`.
     > Example: `ProductID-AccessoryA-AccessoryB-AccessoryC`
 5.  Use the final string as a `variantConfigId`, as specified in the below `checkoutCart_oncreate_v2` schema:
+
     >
-        ```   {
-        'cancelUrl': 'www.yourwebsite.com',
-        'oemId': 'oem-id',
-        'oemKey': 'oem-key',
-        'variantConfigIds': ['exampleProductId-variantId'],
-        'cartVehicle':
-        	{
-        		'productId': 'exampleProductId'
-        	}
-    }```
+
+    ```
+        {
+        	'cancelUrl': 'www.yourwebsite.com',
+        	'oemId': 'oem-id',
+        	'oemKey': 'oem-key',
+        	'variantConfigIds': ['exampleProductId-variantId'],
+        	'cartVehicle':
+        		{
+        			'productId': 'exampleProductId'
+        		}
+        }
+    ```
