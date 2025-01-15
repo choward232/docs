@@ -26,28 +26,28 @@ Ekho’s internal `productId` for the Vehicle model.
 
     >
 
-    ```
+    ```json
         {
-        	'cancelUrl': 'www.yourwebsite.com',
-        	'oemId': 'oem-id',
-        	'oemKey': 'oem-key',
-        	'variantConfigIds': ['exampleProductId-variantId'],
-        	'cartVehicle':
+        	"cancelUrl": "www.yourwebsite.com",
+        	"oemId": "oem-id",
+        	"oemKey": "oem-key",
+        	"variantConfigIds": ["exampleProductId-variantId"],
+        	"cartVehicle":
         		{
-        			'productId': 'exampleProductId'
+        			"productId": "exampleProductId"
         		}
         }
     ```
 
 ### Sample Script to Produce the `variantConfigId`:
 
-```
-const productID = “exampleProductId”;
-const accessoryNames = [“Red”, “80HP”, “Extra Storage”];
+```js
+const productID = "exampleProductId";
+const accessoryNames = ["Red", "80HP", "Extra Storage"];
 const variantId = accessories
-.map((acc) => acc.accessoryName.replace(/(\s+|[^\w-])/g, ''))
-.sort()
-.join('-');
-const variantConfigId = `${productId}-${variantId}`
-// variantConfigId === “exampleProductId-80HP-ExtraStorage-Red”
+	.map((acc) => acc.accessoryName.replace(/(\s+|[^\w-])/g, ''))
+	.sort()
+	.join('-');
+const variantConfigId = `${productId}-${variantId}`;
+// variantConfigId === "exampleProductId-80HP-ExtraStorage-Red"
 ```
