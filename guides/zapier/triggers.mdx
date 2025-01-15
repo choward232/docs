@@ -1,0 +1,111 @@
+---
+title: 'Zapier Triggers'
+description: 'This page provides an overview of the Ekho Dealer triggers you can use on Zapier.'
+---
+
+## Ekho Dealer Triggers
+
+Below are all the Ekho Dealer triggers you have at your disposal on Zapier. You are free to create other zaps that leverage these triggers in whichever ways you like (e.g. creating a new item in your ERP system every time a Newly Purchased Vehicle trigger is fired). Don’t, however, use these triggers to create new orders in your e-commerce site; we already do this automatically.
+
+<Accordion title="Newly Placed Order">
+    **When does this trigger fire:** when a new order is placed via the checkout page.
+    
+    **What data does this trigger return:**
+    - `placedOrderId`: The ID of the Ekho Dealer `Placed Order`.
+    
+    **Notes:** if you’re interested in accessing the properties of the `Placed Order` object, use the ["Fetch Placed Order Data"](/guides/zapier/actions#fetch-placed-order-data) action by providing it with the `placedOrderId` from this trigger.
+</Accordion>
+
+<Accordion title="Newly Purchased Vehicle">
+    **When does this trigger fire:** when a new vehicle is purchased via your checkout page
+    
+    **What data does this trigger return:**
+    - `purchasedVehicleId`: The ID of the Ekho Dealer `Purchased Vehicle`.
+    
+    **Notes:** if you’re interested in accessing the properties of the `Purchased Vehicle` object, use the ["Fetch Purchased Vehicle Data"](/guides/zapier/actions#fetch-purchased-vehicle-data) action by providing it with the `purchasedVehicleId` from this trigger
+</Accordion>
+
+<Accordion title="Newly Purchased Accessory">
+    **When does this trigger fire:** when a new accessory (i.e. a product that isn’t a vehicle) is purchased via the checkout page
+    
+    **What data does this trigger return:**
+    - `purchasedAccessoryId`: The ID of the Ekho Dealer `Purchased Accessory`.
+    
+    **Notes:** if you’re interested in accessing the properties of the `Purchased Accessory` object, use the ["Fetch Purchased Accessory Data"](/guides/zapier/actions#fetch-purchased-accessory-data) action by providing it with the `purchasedAccessoryId` from this trigger.
+</Accordion>
+
+<Accordion title="New Vehicle Payment Status">
+    **When does this trigger fire:** triggers whenever a vehicle payment status is updated. Three possible update values:
+    -   `RESERVATION_PAID` : when the reservation payment succeeds
+    -   `FINANCING_GUARANTEED` : when the buyer has accepted and loan and terms are locked in
+    -   `FULLY_PAID` : when we've received all of the funds for this vehicle (either when they pay in full in cash or we received funding from the lender)
+
+    **What data does this trigger return:**
+    -   `updatedVehiclePaymentStatus` : the new vehicle payment status.
+    -   `purchasedVehicleId` : the Ekho Dealer ID of the `Purchased Vehicle`.
+
+    **Notes:** if you’re interested in accessing the properties of the `Purchased Vehicle` object, use the ["Fetch Purchased Vehicle Data"](/guides/zapier/actions#fetch-purchased-vehicle-data) action by providing it with the `purchasedVehicleId` from this trigger.
+</Accordion>
+
+<Accordion title="New Vehicle Fulfillment Status">
+    **When does this trigger fire:** when a vehicle fulfillment status is updated. Three possible update values:
+    -   `FULFILLED` : when the vehicle is shipped
+    -   `IN_TRANSIT` : when the vehicle is in transit
+    -   `DELIVERED` : when the vehicle is delivered
+
+    **What data does this trigger return:**
+    -   `updatedVehicleFulfillmentStatus` : the new vehicle fulfillment status.
+    -   `purchasedVehicleId` : the Ekho Dealer ID of the `Purchased Vehicle`.
+
+    **Notes:** if you’re interested in accessing the properties of the `Purchased Vehicle` object, use the ["Fetch Purchased Vehicle Data"](/guides/zapier/actions#fetch-purchased-vehicle-data) action by providing it with the `purchasedVehicleId` from this trigger.
+</Accordion>
+
+<Accordion title="New Vehicle Stage">
+  **When does this trigger fire:** Triggers whenever the stage of a vehicle is updated.
+
+  **What data does this trigger return:**
+  -   `updatedVehicleStage` : the new vehicle stage.
+  -   `purchasedVehicleId` : the Ekho Dealer ID of the `Purchased Vehicle`.
+
+  **Notes:** if you’re interested in accessing the properties of the `Purchased Vehicle` object, use the ["Fetch Purchased Vehicle Data"](/guides/zapier/actions#fetch-purchased-vehicle-data) action by providing it with the `purchasedVehicleId` from this trigger.
+</Accordion>
+
+<Accordion title="New Survey Complete">
+  **When does this trigger fire:** Triggers whenever a buyer survey is complete.
+
+  **What data does this trigger return:**
+  -   `vehicleId` : the ID of the `Vehicle`.
+
+  **Notes:** if you’re interested in accessing the properties of the `Purchased Vehicle` object, use the ["Fetch Purchased Vehicle Data"](/guides/zapier/actions#fetch-purchased-vehicle-data) action by providing it with the `purchasedVehicleId` from this trigger.
+</Accordion>
+
+<Accordion title="New Placed Preorder">
+  **When does this trigger fire:** Triggers when a new preorder is placed.
+
+  **What data does this trigger return:**
+  -   `preorderId` : the ID of the `Preorder`.
+
+  **Notes:** if you’re interested in accessing the properties of the `Preorder` object, use the ["Fetch Preorder Data"](/guides/zapier/actions#fetch-preorder-data) action by providing it with the `preorderId` from this trigger.
+</Accordion>
+
+<Accordion title="New Abandoned Cart">
+  **When does this trigger fire:** Triggers when a new abandoned cart is created.
+
+  **What data does this trigger return:**
+  -   `cartId` : the ID of the `Cart`.
+
+  **Notes:**
+  - If you’re interested in accessing the properties of the `Abandoned Cart` object, use the ["Fetch Abandoned Cart Data"](/guides/zapier/actions#fetch-abandoned-cart-data) action by providing it with the `cartId` from this trigger.
+  - For an example of how to use a trigger/action for Abandoned Carts, see this [Advanced Example](/guides/zapier/advanced-example-listen-to-abandoned-carts).
+</Accordion>
+
+<Accordion title="Update Abandoned Cart">
+  **When does this trigger fire:** Triggers when an abandoned cart is updated.
+
+  **What data does this trigger return:**
+  -   `cartId` : the ID of the `Cart`.
+
+  **Notes:**
+  -  If you’re interested in accessing the properties of the `Abandoned Cart` object, use the ["Fetch Abandoned Cart Data"](/guides/zapier/actions#fetch-abandoned-cart-data) action by providing it with the `cartId` from this trigger.
+  - For an example of how to use a trigger/action for Abandoned Carts, see this [Advanced Example](/guides/zapier/advanced-example-listen-to-abandoned-carts).
+</Accordion>
