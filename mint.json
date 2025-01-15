@@ -57,7 +57,22 @@
 		{
 			"group": "Guides",
 			"pages": [
-				"guides/zapier-integration",
+				{
+					"group": "Zapier Integration",
+					"icon": "bolt",
+					"pages": [
+						"guides/zapier/introduction",
+						"guides/zapier/triggers",
+						"guides/zapier/actions",
+						{
+							"group": "Zapier Examples",
+							"pages": [
+								"guides/zapier/simple-example-listen-to-newly-purchased-vehicles",
+								"guides/zapier/advanced-example-listen-to-abandoned-carts"
+							]
+						}
+					]
+				},
 				"guides/generating-variant-config-ids"
 			]
 		},
