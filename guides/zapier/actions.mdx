@@ -8,54 +8,107 @@ description: 'This page provides an overview of the Ekho Dealer actions you can 
 Below are all the relevant Ekho Dealer actions on Zapier to help with data transfer.
 
 <Accordion title="Assign VIN to a Vehicle">
+    **What does this action do:** Writes the VIN associated with a purchased vehicle to the Ekho Dealer DB.
+
+    **What data does the action require:**
+    - `purchasedVehicleId`: Ekho Dealer's unique identifier for the purchased vehicle associated with the VIN.
+    - `vin`: VIN associated with a purchased vehicle to write to Ekho Dealer
+
+    **What data does this action return:** the `vin` value.
 </Accordion>
 
 <Accordion title="Assign Odometer Reading to a Vehicle">
+    **What does this action do:** Assigns the official odometer reading to the vehicle.
+
+    **What data does the action require:**
+    - `purchasedVehicleId`: Ekho Dealer's unique identifier for the purchased vehicle.
+    - `odometerReading`: Official odometer reading of the vehicle prior to sale to end consumer.
+
+    **What data does this action return:** the `odometerReading` rounded to the nearest whole number.
 </Accordion>
 
 <Accordion title="Assign Odometer Validity to Vehicle">
+    **What does this action do:** Assign the validity of the odometer reading to an object. This is used in registration and titling.
+
+    **What data does the action require:**
+    - `purchasedVehicleId`: Ekho Dealer's unique identifier for the purchased vehicle.
+    - `odometerValidity`: Indicates the odometer validity/condition. Should be one of three choices: Actual, ExceedsMechnicalLimits, NotActual.
+    **Important note:** the capitalization on these three choices is important.
+
+    **What data does this action return:** the `odometerValidity` value.
 </Accordion>
 
 <Accordion title="Update Vehicle Fulfillment Status">
+    **What does this action do:** Updates the Vehicle Fulfillment Status to one of the following: [FULFILLED, UNFULFILLED, FULFILLMENT_REQUESTED, CANCELLED].
+
+    **What data does the action require:**
+    - `purchasedVehicleId`: Ekho Dealer's unique identifier for the purchased vehicle.
+    - `vehicleFulfillmentStatus`: Indicates the fulfillment status of the vehicle. Should be one of the following choices: `FULFILLED`, `UNFULFILLED`, `FULFILLMENT_REQUESTED`, `CANCELLED`.
+    **Important note:** the capitalization on these three choices is important.
+
+    **What data does this action return:** the `vehicleFulfillmentStatus` value.
 </Accordion>
 
 <Accordion title="Assign Motorcycle Engine Number to a Vehicle">
+    **What does this action do:** Writes the Motorcycle Engine Number associated with a purchased vehicle to the Ekho Dealer DB.
+
+    **What data does the action require:**
+    - `purchasedVehicleId`: Ekho Dealer's unique identifier for the purchased vehicle.
+    - `motorcycleEngineNumber`: Motorcycle Engine Number associated with a purchased vehicle to write to Ekho Dealer.
+
+    **What data does this action return:** the `motorcycleEngineNumber` value.
 </Accordion>
 
 <Accordion title="Fetch Abandoned Cart Data">
+    **What does this action do:** Finds abandoned cart data associated with a cart id.
+    
+    **What data does the action require:**
+    - `cartId`: The cart id associated with the abandoned cart.
+    
+    **What data does this action return:** the `Abandoned Cart` with the relevant data properties.
 </Accordion>
 
 <Accordion title="Fetch Placed Order Data">
-    **What does this action do:** fetches a `Placed Order` from Ekho Dealer’s database
+    **What does this action do:** fetches a `Placed Order` from Ekho Dealer’s database.
     
-    **What data does the action require:** `Placed Order ID` (the Ekho Dealer ID of the `Placed Order` you want to fetch)
+    **What data does the action require:**
+    - `placedOrderId`: The Ekho Dealer ID of the `Placed Order` you want to fetch.
     
-    **What data does this action return:** the `Placed Order` with the relevant data properties
+    **What data does this action return:** the `Placed Order` with the relevant data properties.
 </Accordion>
 
 <Accordion title="Fetch Purchased Vehicle Data">
     **What does this action do:** fetches a `Purchased Vehicle` from Ekho Dealer’s database
     
-    **What data does the action require:** `Purchased Vehicle ID` (the Ekho Dealer ID of the `Purchased Vehicle` you want to fetch)
+    **What data does the action require:**
+    - `purchasedVehicleId`: The Ekho Dealer ID of the `Purchased Vehicle` you want to fetch.
     
-    **What data does this action return:** the `Purchased Vehicle` with the relevant data properties
+    **What data does this action return:** the `Purchased Vehicle` with the relevant data properties.
 </Accordion>
 
 <Accordion title="Fetch Purchased Accessory Data">
     **What does this action do:** fetches a `Purchased Accessory` from Ekho Dealer’s database
     
-    **What data does the action require:** `Purchased Accessory ID` (the Ekho Dealer ID of the `Purchased Accessory` you want to fetch)
+    **What data does the action require:**
+    - `purchasedAccessoryId`: The Ekho Dealer ID of the `Purchased Accessory` you want to fetch.
     
-    **What data does this action return:** the `Purchased Accessory` with the relevant data properties
+    **What data does this action return:** the `Purchased Accessory` with the relevant data properties.
 </Accordion>
 
 <Accordion title="Fetch Buyer Data">
     **What does this action do:** fetches a `Buyer` from Ekho Dealer’s database
     
-    **What data does the action require:** `Buyer ID` (the Ekho Dealer ID of the `Buyer` you want to fetch)
+    **What data does the action require:**
+    - `buyerId`: The Ekho Dealer ID of the `Buyer` you want to fetch.
     
-    **What data does this action return:** the `Buyer` with the relevant data properties
+    **What data does this action return:** the `Buyer` with the relevant data properties.
 </Accordion>
 
 <Accordion title="Fetch Preorder Data">
+    **What does this action do:** fetches a `Preorder` from Ekho Dealer’s database.
+    
+    **What data does the action require:**
+    - `preorderId`: The Ekho Dealer ID of the `Preorder` you want to fetch.
+    
+    **What data does this action return:** the `Preorder` with the relevant data properties.
 </Accordion>
