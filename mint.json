@@ -51,13 +51,15 @@
 				"essentials/ekho-communications",
 				"essentials/flow-of-funds",
 				"essentials/third-party-analytics",
-				"essentials/vehicle-order-lifecycle",
-				"essentials/zapier-integration"
+				"essentials/vehicle-order-lifecycle"
 			]
 		},
 		{
 			"group": "Guides",
-			"pages": ["guides/generating-variant-config-ids"]
+			"pages": [
+				"guides/zapier-integration",
+				"guides/generating-variant-config-ids"
+			]
 		},
 		{
 			"group": "API Reference",

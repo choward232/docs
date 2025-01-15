@@ -4,7 +4,7 @@ description: 'This page provides an overview of how to generate VariantConfigIds
 icon: 'palette'
 ---
 
-## Context
+### Context
 
 Ekho requires `variantConfigIds` for its `checkoutCart_oncreate_v2`
 endpoint. You must programmatically generate them based on the specific Vehicle configuration a Buyer has selected.
@@ -14,7 +14,7 @@ Please follow the guide below to generate the correct `variantConfigId` and succ
 
 Ekho’s internal `productId` for the Vehicle model.
 
-## Steps
+### Steps
 
 1.  Collect all accessory names in the Vehicle’s configuration into an array.
     E.g. `Red`, `Extra Storage`, etc. These names should align with the possible accessories specified in the Vehicle onboarding sheet you sent to Ekho.
@@ -38,3 +38,16 @@ Ekho’s internal `productId` for the Vehicle model.
         		}
         }
     ```
+
+### Sample Script to Produce the `variantConfigId`:
+
+```
+const productID = “exampleProductId”;
+const accessoryNames = [“Red”, “80HP”, “Extra Storage”];
+const variantId = accessories
+.map((acc) => acc.accessoryName.replace(/(\s+|[^\w-])/g, ''))
+.sort()
+.join('-');
+const variantConfigId = `${productId}-${variantId}`
+// variantConfigId === “exampleProductId-80HP-ExtraStorage-Red”
+```
