@@ -1807,31 +1807,6 @@ components:
                             description: "Init as false. Indicates whether the OEM has sent us the MSO."
                     additionalProperties: false
                     description: "The following optional properties are provided by the OEM at time of setting vehicleFulfillmentStatus to SHIPPED."
-                paymentInfo:
-                    type: "object"
-                    properties:
-                        paymentSelection:
-                            type: "string"
-                            enum:
-                                - "nativeFinancing"
-                                - "otherFinancing"
-                                - "checkoutFullPayment"
-                                - "cashEarly"
-                                - "cash"
-                            description: "Payment selection the buyer has chosen. Initially set during checkout and can be changed in financing. Init as null."
-                        vehiclePaymentStatus:
-                            type: "string"
-                            enum:
-                                - "RESERVATION_INITIATIED"
-                                - "NO_PAYMENTS"
-                                - "RESERVATION_PAID"
-                                - "DOWNPAYMENT_PAID"
-                                - "FINANCING_GUARANTEED"
-                                - "FULLY_PAID"
-                            description: "The status of payment for this particular purchasedVehicle. Init as null."
-                        totalAmountReceived:
-                            type: "number"
-                            description: "Running total of all money received by Ekho for this vehicle (post refunds). Not all money accounted here will necessarily be collected by Ekho. Initialized at 0."
                 grossInvoicePrice:
                     type: "number"
                     description: "The gross invoice price of the vehicle paid by Ekho to the client"
@@ -2095,6 +2070,28 @@ components:
                 requiresAssemblyAfterDelivery:
                     type: "boolean"
                     description: "true if the vehicle requires assembly after delivery (optional for backwards compatibility)"
+                paymentSelection:
+                    type: "string"
+                    enum:
+                        - "nativeFinancing"
+                        - "otherFinancing"
+                        - "checkoutFullPayment"
+                        - "cashEarly"
+                        - "cash"
+                    description: "Payment selection the buyer has chosen. Initially set during checkout and can be changed in financing. Init as null."
+                vehiclePaymentStatus:
+                    type: "string"
+                    enum:
+                        - "RESERVATION_INITIATIED"
+                        - "NO_PAYMENTS"
+                        - "RESERVATION_PAID"
+                        - "DOWNPAYMENT_PAID"
+                        - "FINANCING_GUARANTEED"
+                        - "FULLY_PAID"
+                    description: "The status of payment for this particular purchasedVehicle. Init as null."
+                totalAmountReceived:
+                    type: "number"
+                    description: "Running total of all money received by Ekho for this vehicle (post refunds). Not all money accounted here will necessarily be collected by Ekho. Initialized at 0."
             required:
                 - "id"
                 - "productId"
